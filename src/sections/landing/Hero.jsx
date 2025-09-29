@@ -3,7 +3,7 @@ import { ArrowRight, Brain, Check, ClipboardCheck, Rocket, Users } from "lucide-
 
 export default function Hero() {
     return (
-        <div className="text-center animate-drop-custom">
+        <div className="text-center animate-drop-custom my-24">
             {/* Badge */}
             <div className="inline-block bg-blue-100/30 border-2 border-blue-400 rounded-full px-6 py-2 mb-16 shadow-lg">
                 <div className="flex items-center gap-2 justify-center">
@@ -36,7 +36,6 @@ export default function Hero() {
             <Button className="bg-blue-500 text-white font-extrabold border-2 border-blue-500 py-6 mb-10 text-md rounded-lg px-12  hover:bg-blue-600 hover:text-white shadow-xl [&_svg]:w-6 [&_svg]:h-6">
                 <Rocket size={58} />
                 Create My Resume<ArrowRight className="w-8 h-8" /> </Button>
-
 
             <div className="flex justify-center gap-20 mt-16">
                 {/* Stat 1 */}
@@ -72,6 +71,7 @@ export default function Hero() {
                     </p>
                 </div>
             </div>
+
         </div>
 
     );

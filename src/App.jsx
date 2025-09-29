@@ -1,5 +1,8 @@
 import Header from "./components/layout/Header";
+import Brands from "./sections/landing/Brands";
+import Features from "./sections/landing/Features";
 import Hero from "./sections/landing/Hero";
+import Process from "./sections/landing/Process";
 
 function App() {
   return (
@@ -7,6 +10,9 @@ function App() {
       <Header />
       <main className="mt-20">
         <Hero />
+        <Brands />
+        <Features />
+        <Process />
       </main>
     </div>
   );
