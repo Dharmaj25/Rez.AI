@@ -15,7 +15,7 @@ const Process = () => {
                     Drag & drop or import in seconds — our <span className="text-blue-500">AI engine</span> takes it from there.
                 </>
             ),
-            illustration : ResumeIllustration
+            illustration: ResumeIllustration
         },
         {
             id: 2,
@@ -35,7 +35,7 @@ const Process = () => {
                     Pick from sleek, <span className="text-blue-500">ATS-optimized</span> templates tailored for modern recruiters.
                 </>
             ),
-            illustration : StyleIllustration
+            illustration: StyleIllustration
         },
         {
             id: 4,
@@ -50,7 +50,6 @@ const Process = () => {
     ]
 
     return (
-
         <div className=" mt-24 ">
             {/* Headings */}
             <div className="text-center">
@@ -58,21 +57,32 @@ const Process = () => {
                     Simple Steps to Land Your
                 </h1>
                 <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-500 mb-10 flex items-center justify-center gap-3">
-                     Dream Job
+                    Dream Job
                     <Rocket strokeWidth={2.5} className="w-12 mx-1 h-12 text-blue-500 font-extrabold" />
                 </h1>
+
+                {/* Description */}
+                <div className="mb-20 mx-auto">
+                    <p className="text-2xl text-gray-600/75 font-bold ">
+                        Building a job-winning resume is simple with{" "}
+                        <span className="text-blue-500">Rez.AI</span> — a guided process from upload to final draft.
+                    </p>
+                    <p className="text-2xl text-blue-500/90 font-bold mt-1 leading-relaxed">
+                        Just four steps: upload, enhance, style, and shine.
+                    </p>
+                </div>
             </div>
             <div className="flex justify-center">
                 <div className="relative flex flex-col items-center">
                     {steps.map((step, index) => (
                         <div key={step.id} className={`flex items-start`}>
                             {/* Left Content */}
-                            <div className="w-80 text-right pr-6 hidden md:block">
+                            <div className="w-80 md:block">
                                 <div>
                                     {index % 2 === 0 ? <div>
-                                        <h3 className="font-bold text-2xl mb-2">{step.title}</h3>
-                                        <p className="text-md text-muted-foreground font-semibold">{step.description}</p>
-                                    </div> :  <img src={step.illustration}  alt={"Illustration"} height={800} width={800} />}
+                                        <h3 className="font-bold text-2xl mb-2 text-left">{step.title}</h3>
+                                        <p className="text-md text-muted-foreground font-semibold text-left">{step.description}</p>
+                                    </div> : <img src={step.illustration} alt={"Illustration"} height={800} width={800} />}
                                 </div>
                             </div>
 
@@ -83,7 +93,7 @@ const Process = () => {
                                 </div>
                                 {/* Force line height */}
                                 {index !== steps.length - 1 && (
-                                    <div className="w-px bg-blue-500" style={{ height: "300px" }}></div>
+                                    <div className="w-px bg-blue-500" style={{ height: "330px" }}></div>
                                 )}
                             </div>
 
@@ -91,9 +101,9 @@ const Process = () => {
                             {/* Right Content */}
                             <div className="w-80 pl-6 hidden md:block">
                                 {index % 2 !== 0 ? <div>
-                                    <h3 className="font-bold text-2xl mb-2" style={{whiteSpace : "nowrap"}}>{step.title}</h3>
+                                    <h3 className="font-bold text-2xl mb-2" style={{ whiteSpace: "nowrap" }}>{step.title}</h3>
                                     <p className="text-md text-muted-foreground font-semibold">{step.description}</p>
-                                </div> :  <img src={step.illustration}  className="ml-10" alt={"Illustration"} height={600} width={600} />}
+                                </div> : <img src={step.illustration} className="ml-10" alt={"Illustration"} height={600} width={600} />}
                             </div>
                         </div>
                     ))}
