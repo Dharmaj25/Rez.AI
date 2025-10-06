@@ -62,7 +62,7 @@ const Features = () => {
                 />
             </h1>
             {/* Descriptions */}
-            <p className="text-2xl text-gray-600/75 font-bold mx-auto leading-relaxed">
+            <p className="text-2xl text-gray-700/80 font-bold mx-auto leading-relaxed">
                 Built with advanced AI, Rez.AI transforms your experience into powerful
                 resumes that get noticed.
             </p>

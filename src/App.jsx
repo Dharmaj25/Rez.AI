@@ -3,6 +3,7 @@ import Brands from "./sections/landing/Brands";
 import Features from "./sections/landing/Features";
 import Hero from "./sections/landing/Hero";
 import Process from "./sections/landing/Process";
+import Showcase from "./sections/landing/Showcase";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Brands />
         <Features />
         <Process />
+        <Showcase />
       </main>
     </div>
   );
