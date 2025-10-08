@@ -4,6 +4,7 @@ import Features from "./sections/landing/Features";
 import Hero from "./sections/landing/Hero";
 import Process from "./sections/landing/Process";
 import Showcase from "./sections/landing/Showcase";
+import Testimonials from "./sections/landing/Testimonial";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Features />
         <Process />
         <Showcase />
+        <Testimonials />
       </main>
     </div>
   );

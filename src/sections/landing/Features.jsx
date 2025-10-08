@@ -66,7 +66,7 @@ const Features = () => {
                 Built with advanced AI, Rez.AI transforms your experience into powerful
                 resumes that get noticed.
             </p>
-            <p className="text-2xl text-blue-500/90 font-bold mx-auto leading-relaxed">
+            <p className="text-2xl text-blue-500 font-bold mx-auto leading-relaxed">
                 Modern templates, smart suggestions, and recruiter-friendly designs —
                 all in one place.
             </p>

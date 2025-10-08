@@ -117,7 +117,7 @@ const Showcase = () => {
                         Choose from sleek, ATS-friendly designs that highlight your strengths
                         and catch recruiter attention instantly.
                     </p>
-                    <p className="text-2xl text-blue-500/90 font-bold mt-1 leading-relaxed">
+                    <p className="text-2xl text-blue-500 font-bold mt-1 leading-relaxed">
                         Modern layouts. Easy customization. Professional impact.
                     </p>
                 </div>
@@ -131,8 +131,8 @@ const Showcase = () => {
                         className={`
                             border-2 border-blue-500 rounded-3xl py-5 px-8 text-md font-medium transition-all duration-300
                             ${activeTemplateType === label
-                                ? "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-[0_6px_20px_rgba(59,130,246,0.5)] translate-y-[-5px]"
-                                : "text-blue-500 bg-white hover:text-white hover:bg-gradient-to-r hover:from-blue-500/80 hover:via-blue-600/80 hover:to-blue-700/80 hover:shadow-[0_6px_20px_rgba(59,130,246,0.5)] hover:translate-y-[-5px]"
+                                ? "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-[0_6px_20px_rgba(59,130,246,0.5)] translate-y-[-3px]"
+                                : "text-blue-500 bg-white hover:text-white hover:bg-gradient-to-r hover:from-blue-500/80 hover:via-blue-600/80 hover:to-blue-700/80 hover:shadow-[0_6px_20px_rgba(59,130,246,0.5)] hover:translate-y-[-3px]"
                             }
                         `}
                         onClick={() => handleTemplateTypeChange(label)}

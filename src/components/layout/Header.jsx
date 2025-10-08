@@ -36,7 +36,7 @@ export default function Header() {
                 
                 {/* Logo :: start*/}
                 <div className="flex gap-2 items-center">
-                    <div className="bg-blue-600 p-1 rounded-md">
+                    <div className="bg-blue-500 p-1 rounded-md">
                         <FileUser className="text-white w-6 h-6" />
                     </div>
                     <p className="text-xl font-bold text-gray-700">Rez.AI</p>
@@ -58,7 +58,7 @@ export default function Header() {
                 {/* Nav Links :: end*/}
 
                 {/* CTA Button :: start */}
-                <Button className="rounded-xl bg-blue-600 hover:bg-blue-700 flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                <Button className="rounded-xl bg-blue-500 hover:bg-blue-600 flex items-center gap-2 transition-transform duration-300 hover:scale-105">
                     Get Started
                     <ArrowRight className="h-4 w-4" />
                 </Button>

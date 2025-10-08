@@ -63,11 +63,11 @@ const Process = () => {
 
                 {/* Description */}
                 <div className="mb-20 mx-auto">
-                    <p className="text-2xl text-gray-600/75 font-bold ">
+                    <p className="text-2xl text-gray-600 font-bold ">
                         Building a job-winning resume is simple with{" "}
                         <span className="text-blue-500">Rez.AI</span> — a guided process from upload to final draft.
                     </p>
-                    <p className="text-2xl text-blue-500/90 font-bold mt-1 leading-relaxed">
+                    <p className="text-2xl text-blue-500 font-bold mt-1 leading-relaxed">
                         Just four steps: upload, enhance, style, and shine.
                     </p>
                 </div>

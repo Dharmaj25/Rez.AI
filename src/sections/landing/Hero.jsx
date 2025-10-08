@@ -17,7 +17,7 @@ export default function Hero() {
 
             {/* Headings */}
             <p className="text-8xl font-extrabold mb-4">Transform Any</p>
-            <p className="text-8xl text-blue-600 font-extrabold mb-4">Profile Into A</p>
+            <p className="text-8xl text-blue-500 font-extrabold mb-4">Profile Into A</p>
             <p className="text-8xl font-extrabold  inline-flex items-start gap-2">
                 Perfect Resume
                 <span className="bg-blue-500 p-2 rounded-full">
@@ -28,7 +28,7 @@ export default function Hero() {
             {/* Description */}
             <p className="my-16 text-gray-700/80 text-2xl font-bold max-w-l mx-auto leading-relaxed">
                 Upload your existing CV, paste your LinkedIn profile, or connect any professional platform. <br />
-                <span className="text-blue-600 font-bold">
+                <span className="text-blue-500ss font-bold">
                     Our AI crafts beautiful, ATS-friendly resumes in seconds.
                 </span>
             </p>
