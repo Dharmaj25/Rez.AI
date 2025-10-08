@@ -13,7 +13,10 @@ const TestimonialCard = (message, avatar, name, designation) => {
             <AvatarFallback>Avatar</AvatarFallback>
           </Avatar>
         </div>
-        <div></div>
+        <div>
+          <p>{name}</p>
+          <p>{designation}</p>
+        </div>
       </div>
     </div>
   )
