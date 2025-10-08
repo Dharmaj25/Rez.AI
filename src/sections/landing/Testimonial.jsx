@@ -1,13 +1,23 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Quote } from "lucide-react";
 
-const TestimonialCard = (message,avatar,name,designation) => {
+const TestimonialCard = (message, avatar, name, designation) => {
   return (
     <div className="h-96 bg-stone-200 rounded-xl shadow-xl">
-      <Quote fill="blue" className="h-14 w-14"/>
+      <Quote fill="blue" className="h-14 w-14" />
       <h4 className="my-14">{message}</h4>
+      <div className="flex gap-3">
+        <div>
+          <Avatar>
+            <AvatarImage src={avatar} />
+            <AvatarFallback>Avatar</AvatarFallback>
+          </Avatar>
+        </div>
+        <div></div>
+      </div>
     </div>
   )
-} 
+}
 
 const Testimonials = () => {
   const logos = [];
