@@ -87,13 +87,18 @@ export default {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        'slide-reverse': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' }
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'drop-custom': 'drop-custom 1.2s ease forwards',
         'grow-blink': 'grow-blink 1.5s ease-in-out infinite',
-        'slide': 'slide 25s linear infinite',
+        'slide': 'slide 150s linear infinite',
+        'slide-reverse': 'slide-reverse 150s linear infinite reverse'
       }
     }
   },
