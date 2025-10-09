@@ -57,10 +57,11 @@ const PricingSection = () => {
                         Pricing that Scales <br />
                         <span className="text-blue-500">with your ambition</span>
                     </h2>
-                    <p className="text-gray-500 text-xl max-w-3xl mx-auto">
+                    <p className="text-gray-500 text-xl font-semibold max-w-4xl mx-auto">
                         Whether you’re just starting out or managing a global brand, our plans grow with you.
-                        Transparent. Simple. Powerful.
+
                     </p>
+                    <p className="text-blue-500 text-xl my-0 font-semibold max-w-4xl mx-auto">Transparent. Simple. Powerful.</p>
                 </div>
 
                 {/* Pricing Cards */}
@@ -111,8 +112,8 @@ const PricingSection = () => {
                             <div className="mt-auto">
                                 <Button
                                     className={`w-full text-lg font-semibold py-6 rounded-xl transition-all duration-300 shadow-none ${!plan.highlight
-                                            ? "bg-white text-blue-500 hover:bg-blue-50 border border-blue-500 hover:bg-blue-500 hover:text-white"
-                                            : "bg-blue-500 text-white hover:bg-blue-700/80"
+                                        ? "bg-white text-blue-500 hover:bg-blue-50 border border-blue-500 hover:bg-blue-500 hover:text-white"
+                                        : "bg-blue-500 text-white hover:bg-blue-700/80"
                                         }`}
                                 >
                                     {plan.buttonLabel}

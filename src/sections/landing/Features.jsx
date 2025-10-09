@@ -54,7 +54,7 @@ const Features = () => {
             <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-700 mb-2">
                 Why Top Talent
             </h1>
-            <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-500 mb-10 flex items-center justify-center gap-3">
+            <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-500 mb-4 flex items-center justify-center gap-3">
                 Chooses Rez.AI
                 <Sparkles
                     strokeWidth={2.5}
@@ -62,11 +62,11 @@ const Features = () => {
                 />
             </h1>
             {/* Descriptions */}
-            <p className="text-2xl text-gray-700/80 font-bold mx-auto leading-relaxed">
+            <p className="text-gray-500 text-xl mx-auto font-semibold">
                 Built with advanced AI, Rez.AI transforms your experience into powerful
                 resumes that get noticed.
             </p>
-            <p className="text-2xl text-blue-500 font-bold mx-auto leading-relaxed">
+            <p className="text-blue-500 text-xl mx-auto font-semibold">
                 Modern templates, smart suggestions, and recruiter-friendly designs —
                 all in one place.
             </p>

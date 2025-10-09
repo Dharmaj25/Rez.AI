@@ -106,18 +106,18 @@ const Showcase = () => {
                 <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-700 mb-2">
                     Showcase Your Skills With
                 </h1>
-                <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-500 mb-10 flex items-center justify-center gap-3">
+                <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-500 mb-4 flex items-center justify-center gap-3">
                     Stunning Templates
                     <Palette strokeWidth={2.5} className="w-12 mx-1 h-12 text-blue-500 font-extrabold" />
                 </h1>
 
                 {/* Description */}
                 <div className="mb-14 mx-auto">
-                    <p className="text-2xl text-gray-600/75 font-bold">
+                    <p className="text-gray-500 text-xl mx-auto font-semibold">
                         Choose from sleek, ATS-friendly designs that highlight your strengths
                         and catch recruiter attention instantly.
                     </p>
-                    <p className="text-2xl text-blue-500 font-bold mt-1 leading-relaxed">
+                    <p className=" text-blue-500 text-xl mx-auto font-semibold">
                         Modern layouts. Easy customization. Professional impact.
                     </p>
                 </div>

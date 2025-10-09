@@ -56,18 +56,18 @@ const Process = () => {
                 <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-700 mb-2">
                     Simple Steps to Land Your
                 </h1>
-                <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-500 mb-10 flex items-center justify-center gap-3">
+                <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-500 mb-4 flex items-center justify-center gap-3">
                     Dream Job
                     <Rocket strokeWidth={2.5} className="w-12 mx-1 h-12 text-blue-500 font-extrabold" />
                 </h1>
 
                 {/* Description */}
                 <div className="mb-20 mx-auto">
-                    <p className="text-2xl text-gray-600 font-bold ">
+                    <p className="text-gray-500 text-xl mx-auto font-semibold">
                         Building a job-winning resume is simple with{" "}
                         <span className="text-blue-500">Rez.AI</span> — a guided process from upload to final draft.
                     </p>
-                    <p className="text-2xl text-blue-500 font-bold mt-1 leading-relaxed">
+                    <p className="text-blue-500 font-semibold text-xl mx-auto">
                         Just four steps: upload, enhance, style, and shine.
                     </p>
                 </div>
