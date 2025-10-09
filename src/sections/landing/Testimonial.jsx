@@ -245,7 +245,7 @@ const Testimonials = () => {
             ))}
           </div>
         </div>
-        <div className="flex whitespace-nowrap relative mt-10">
+        <div className="flex whitespace-nowrap relative mt-5">
           <div className="flex animate-slide-reverse gap-10">
             {testimonial2.map((t, i) => (
               <TestimonialCard key={i} testimonial={t} />
