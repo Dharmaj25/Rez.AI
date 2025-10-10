@@ -54,14 +54,16 @@ const PricingSection = () => {
             <div className="max-w-7xl mx-auto px-6 text-center">
                 <div className="mb-20">
                     <h2 className="text-6xl sm:text-7xl font-extrabold text-gray-900 mb-6">
-                        Pricing that Scales <br />
-                        <span className="text-blue-500">with your ambition</span>
+                        Pricing that Grows <br />
+                        <span className="text-blue-500">with your career</span>
                     </h2>
-                    <p className="text-gray-500 text-xl font-semibold max-w-4xl mx-auto">
-                        Whether you’re just starting out or managing a global brand, our plans grow with you.
-
+                    <p className="text-gray-500 text-xl font-semibold mx-auto">
+                        Whether you’re crafting your first resume or building a portfolio of achievements,
+                        Rez.AI grows with you.
                     </p>
-                    <p className="text-blue-500 text-xl my-0 font-semibold max-w-4xl mx-auto">Transparent. Simple. Powerful.</p>
+                    <p className="text-blue-500 text-xl my-0 font-semibold max-w-4xl mx-auto">
+                        Transparent. Simple. Powerful.
+                    </p>
                 </div>
 
                 {/* Pricing Cards */}
@@ -113,7 +115,7 @@ const PricingSection = () => {
                                 <Button
                                     className={`w-full text-lg font-semibold py-6 rounded-xl transition-all duration-300 shadow-none ${!plan.highlight
                                         ? "bg-white text-blue-500 hover:bg-blue-50 border border-blue-500 hover:bg-blue-500 hover:text-white"
-                                        : "bg-blue-500 text-white hover:bg-blue-700/80"
+                                        : "bg-blue-500 text-white hover:bg-blue-700"
                                         }`}
                                 >
                                     {plan.buttonLabel}

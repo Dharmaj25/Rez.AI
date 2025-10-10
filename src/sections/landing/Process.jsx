@@ -53,7 +53,7 @@ const Process = () => {
         <div className=" mt-24 ">
             {/* Headings */}
             <div className="text-center">
-                <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-700 mb-2">
+                <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-2">
                     Simple Steps to Land Your
                 </h1>
                 <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-500 mb-4 flex items-center justify-center gap-3">

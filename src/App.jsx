@@ -1,5 +1,6 @@
 import Header from "./components/layout/Header";
 import Brands from "./sections/landing/Brands";
+import Faqs from "./sections/landing/FAQs";
 import Features from "./sections/landing/Features";
 import Hero from "./sections/landing/Hero";
 import PricingSection from "./sections/landing/Pricing";
@@ -19,6 +20,7 @@ function App() {
         <Showcase />
         <Testimonials />
         <PricingSection />
+        <Faqs />
       </main>
     </div>
   );
