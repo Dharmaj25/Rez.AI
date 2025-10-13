@@ -90,7 +90,7 @@ const Showcase = () => {
     };
 
     return (
-        <div className="text-center my-20 bg-stone-100/70 py-14">
+        <div className="text-center my-20 bg-stone-100/70 py-14 px-5">
             {/* Top Label */}
             <div className="inline-block bg-blue-100/30 border-2 border-blue-400 rounded-full px-6 py-2 mb-16 shadow-2xl">
                 <div className="flex items-center gap-2 justify-center">
@@ -102,22 +102,29 @@ const Showcase = () => {
             </div>
 
             {/* Headings */}
+            {/* Headings */}
             <div className="text-center">
-                <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-2">
+                <h1 className="text-4xl sm:text-6xl font-extrabold text-gray-900 mb-2">
                     Showcase Your Skills With
                 </h1>
-                <h1 className="text-5xl sm:text-6xl font-extrabold text-blue-500 mb-4 flex items-center justify-center gap-3">
-                    Stunning Templates
-                    <Palette strokeWidth={2.5} className="w-12 mx-1 h-12 text-blue-500 font-extrabold" />
-                </h1>
+
+                <div className="flex flex-col md:flex-row items-center justify-center gap-3 mb-4">
+                    <h1 className="text-4xl sm:text-6xl font-extrabold text-blue-500">
+                        Stunning Templates
+                    </h1>
+                    <Palette
+                        strokeWidth={2.5}
+                        className="w-10 sm:w-12 h-10 sm:h-12 text-blue-500 font-extrabold mt-2 sm:mt-0"
+                    />
+                </div>
 
                 {/* Description */}
                 <div className="mb-14 mx-auto">
-                    <p className="text-gray-500 text-xl mx-auto font-semibold">
+                    <p className="text-lg text-gray-500 sm:text-xl mx-auto font-semibold">
                         Choose from sleek, ATS-friendly designs that highlight your strengths
                         and catch recruiter attention instantly.
                     </p>
-                    <p className=" text-blue-500 text-xl mx-auto font-semibold">
+                    <p className="text-blue-500 text-xl mx-auto font-semibold">
                         Modern layouts. Easy customization. Professional impact.
                     </p>
                 </div>
