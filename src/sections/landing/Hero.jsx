@@ -1,9 +1,30 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Brain, Check, ClipboardCheck, Rocket, Users } from "lucide-react";
+import { ArrowRight, Brain, Check, ClipboardCheck, Code, FileUser, Rocket, Sparkles, Users, Zap } from "lucide-react";
 
 export default function Hero() {
     return (
-        <div className="text-center animate-drop-custom my-24">
+        <div className="relative text-center animate-drop-custom my-24">
+            {/* Floating Icons :: start */}
+            <div className="bg-yellow-100 w-fit p-3 rounded-full rotate-15 absolute animate-float" style={{ left: "10%", top: "30%" }}>
+                <Zap size={36} className="text-yellow-300" />
+            </div>
+
+            {/* Top Right */}
+            <div className="bg-blue-100/60 w-fit p-3 rounded-full absolute animate-float" style={{ right: "10%", top: "18%" }}>
+                <Code size={38} className="text-blue-400" />
+            </div>
+
+            <div className="bg-purple-100/60 w-fit p-3 rounded-full absolute animate-float" style={{ left: "12%", bottom: "10%" }}>
+                <FileUser size={36} className="text-purple-400"  />
+            </div>
+
+            <div className="bg-pink-100/60 w-fit p-3 rounded-full absolute animate-float-slow" style={{ right: "18%", bottom: "20%" }}>
+                <Sparkles size={36} className="text-pink-400" />
+            </div>
+
+
+            {/* Floating Icons :: end */}
+
             {/* Badge */}
             <div className="inline-block bg-blue-100/30 border-2 border-blue-400 rounded-full px-6 py-2 mb-16 shadow-lg">
                 <div className="flex items-center gap-2 justify-center">

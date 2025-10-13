@@ -90,7 +90,15 @@ export default {
         'slide-reverse': {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' }
-        }
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        'floatSlow': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-15px)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -98,7 +106,10 @@ export default {
         'drop-custom': 'drop-custom 1.2s ease forwards',
         'grow-blink': 'grow-blink 1.5s ease-in-out infinite',
         'slide': 'slide 150s linear infinite',
-        'slide-reverse': 'slide-reverse 150s linear infinite reverse'
+        'slide-reverse': 'slide-reverse 150s linear infinite reverse',
+        'float': 'float 1.3s ease-in-out infinite',
+        'float-slow': 'floatSlow 3s ease-in-out infinite',
+
       }
     }
   },
