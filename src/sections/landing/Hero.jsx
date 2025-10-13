@@ -48,7 +48,7 @@ export default function Hero() {
             </h1>
 
             {/* Description */}
-            <p className="my-8 sm:my-12 text-gray-700/80 text-lg sm:text-xl md:text-2xl font-semibold max-w-2xl mx-auto leading-relaxed">
+            <p className="my-8 sm:my-12 text-gray-700/80 text-lg sm:text-xl md:text-2xl font-semibold mx-auto leading-relaxed">
                 Upload your existing CV, paste your LinkedIn profile, or connect any professional platform. <br />
                 <span className="text-blue-500 font-bold">
                     Our AI crafts beautiful, ATS-friendly resumes in seconds.
