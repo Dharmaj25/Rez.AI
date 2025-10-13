@@ -16,7 +16,7 @@ const Cta = () => {
         </p>
 
         {/* Email Input Section */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto bg-white/10 backdrop-blur-xl p-2 rounded-full border border-white/20">
+        <div className="mt-12 flex sm:flex-row items-center justify-center gap-4 max-w-md mx-auto bg-white/10 backdrop-blur-xl p-2 rounded-full border border-white/20">
           <div className="flex items-center gap-2 w-full">
             <Mail size={22} className="text-blue-100 ml-3" />
             <Input

@@ -14,7 +14,6 @@ import {
 import Face1 from "../../assets/avatars/face9.jpg";
 import Face2 from "../../assets/avatars/face19.jpg";
 import Face3 from "../../assets/avatars/face23.jpg";
-import { Button } from "@/components/ui/button";
 import { MessageCircleHeart } from "lucide-react";
 
 const avatars = [Face1, Face2, Face3];
@@ -55,16 +54,16 @@ const Faqs = () => {
 
     return (
         <section className="my-24 px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-4xl sm:text-6xl font-extrabold text-gray-900 dark:text-white mb-6">
                 Frequently Asked
                 <span className="text-blue-500"> Questions </span>
             </h2>
 
-            <p className="text-gray-500 text-xl mx-auto font-semibold">
+            <p className="text-gray-500 text-base sm:text-xl mx-auto font-semibold">
                 Everything you need to know about creating your AI-powered resume and portfolio with Rez.AI.
             </p>
 
-            <p className="text-blue-500 text-lg sm:text-xl mt-2 font-semibold">
+            <p className="text-blue-500 text-base sm:text-xl mt-2 font-semibold">
                 Simple answers. Clear guidance.
             </p>
 
