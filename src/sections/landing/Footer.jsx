@@ -51,10 +51,15 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Navigation Sections (Mapped) */}
+        {/* Navigation Sections */}
         <div className="flex flex-wrap justify-center sm:justify-end gap-10 flex-[2] text-sm">
           {footerData.map((section, index) => (
-            <div key={index}>
+            <div
+              key={index}
+              className={
+                section.title === "Products" ? "hidden lg:block" : ""
+              }
+            >
               <h4 className="uppercase text-gray-500 dark:text-gray-400 font-semibold tracking-wide mb-4">
                 {section.title}
               </h4>
