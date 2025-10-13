@@ -187,20 +187,16 @@ const testimonial2 =
   ];
 
 
-
-
-
 // ✅ Testimonials Section
 const Testimonials = () => {
   return (
     <div className="my-28">
       {/* Top Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center px-10 sm:px-20 lg:px-24">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start px-10 sm:px-20 lg:px-24">
         {/* Left Section */}
         <div className="relative">
           <h1
-            className="text-6xl sm:text-7xl font-extrabold text-gray-900 mb-5"
-            style={{ lineHeight: "5.2rem" }}
+            className="text-4xl sm:text-7xl font-extrabold text-gray-900 mb-5 text-center lg:text-left"
           >
             Trusted by
             <br />
@@ -209,8 +205,7 @@ const Testimonials = () => {
           </h1>
 
           <p
-            className="text-xl sm:text-2xl text-gray-800/80 mt-6"
-            style={{ maxWidth: "80%" }}
+            className="text-lg sm:text-2xl text-gray-800/80 mt-6 text-center lg:text-left lg:max-w-[80%] "
           >
             Professionals across the globe are crafting stunning portfolios and
             landing dream opportunities with{" "}
@@ -220,13 +215,13 @@ const Testimonials = () => {
         </div>
 
         {/* Right Stats Section */}
-        <div className="flex flex-col gap-16">
-          <div className="flex flex-wrap justify-center gap-20">
+        <div className="flex flex-col gap-8 md:gap-16">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-20">
             <Stat value="89%" label="built a portfolio within 1 day" />
             <Stat value="75%" label="got more recruiter visits per week" />
           </div>
 
-          <div className="flex flex-wrap justify-center gap-20">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-20">
             <Stat value="48+" label="hours saved in resume building" />
             <Stat value="4.9★" label="average user satisfaction" />
           </div>
@@ -297,11 +292,11 @@ const TestimonialCard = ({ testimonial }) => {
 };
 
 const Stat = ({ value, label }) => (
-  <div className="flex flex-col items-start w-64">
-    <h1 className="text-7xl font-extrabold text-blue-500 leading-none">
+  <div className="flex flex-col items-center lg:items-start w-64">
+    <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-blue-500 leading-none">
       {value}
     </h1>
-    <h4 className="mt-3 text-lg font-semibold text-gray-700 whitespace-nowrap">
+    <h4 className="mt-3 text-md md:text-lg font-semibold text-gray-700 whitespace-nowrap">
       {label}
     </h4>
   </div>
