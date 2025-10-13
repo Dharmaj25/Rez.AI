@@ -63,7 +63,7 @@ const Faqs = () => {
                 Everything you need to know about creating your AI-powered resume and portfolio with Rez.AI.
             </p>
 
-            <p className="text-blue-500 text-base sm:text-xl mt-2 font-semibold">
+            <p className="text-blue-500 text-base sm:text-xl font-semibold">
                 Simple answers. Clear guidance.
             </p>
 
