@@ -53,7 +53,7 @@ const Faqs = () => {
     ];
 
     return (
-        <section className="my-24 px-4 sm:px-6 lg:px-8 text-center">
+        <section className="my-24 px-4 sm:px-6 lg:px-8 text-center" id="faqs">
             <h2 className="text-4xl sm:text-6xl font-extrabold text-gray-900 dark:text-white mb-6">
                 Frequently Asked
                 <span className="text-blue-500"> Questions </span>

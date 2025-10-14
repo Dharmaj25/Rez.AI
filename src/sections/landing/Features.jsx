@@ -49,7 +49,7 @@ const Features = () => {
     ];
 
     return (
-        <div className="text-center my-20 bg-stone-100/70 py-14 px-8">
+        <div className="text-center my-20 bg-stone-100/70 py-14 px-8" id="features">
             {/* Headings */}
             <h1 className="text-4xl sm:text-6xl font-extrabold text-gray-900 mb-2">
                 Why Top Talent

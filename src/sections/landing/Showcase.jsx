@@ -90,7 +90,7 @@ const Showcase = () => {
     };
 
     return (
-        <div className="text-center my-20 bg-stone-100/70 py-14 px-5">
+        <div className="text-center my-20 bg-stone-100/70 py-14 px-5" id="templates">
             {/* Top Label */}
             <div className="inline-block bg-blue-100/30 border-2 border-blue-400 rounded-full px-6 py-2 mb-16 shadow-2xl">
                 <div className="flex items-center gap-2 justify-center">

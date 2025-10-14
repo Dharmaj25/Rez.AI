@@ -50,7 +50,7 @@ const plans = [
 
 const PricingSection = () => {
   return (
-    <section className="relative pb-14 bg-gradient-to-b from-white via-blue-50/40 to-white overflow-hidden">
+    <section className="relative pb-14 bg-gradient-to-b from-white via-blue-50/40 to-white overflow-hidden" id="pricing">
       <div className="max-w-7xl mx-auto px-6 text-center">
         {/* Header */}
         <div className="mb-14 sm:mb-20">

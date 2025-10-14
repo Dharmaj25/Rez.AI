@@ -12,7 +12,7 @@ import Testimonials from "./sections/landing/Testimonial";
 
 function App() {
   return (
-    <div>
+    <div className="scroll-smooth">
       <Header />
       <main className="mt-20">
         <Hero />
