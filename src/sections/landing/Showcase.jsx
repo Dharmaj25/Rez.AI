@@ -54,6 +54,10 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+
+//motion.dev import
+import { motion } from "framer-motion";
+
 const Showcase = () => {
     const [activeTemplateType, setActiveTemplateType] = useState("Modern");
     const [resumes, setResumes] = useState([ModernResume1, ModernResume2, ModernResume3, ModernResume4, ModernResume5]);
@@ -90,7 +94,14 @@ const Showcase = () => {
     };
 
     return (
-        <div className="text-center my-20 bg-stone-100/70 py-14 px-5" id="templates">
+        <motion.div
+            className="text-center my-20 bg-stone-100/70 py-14 px-5"
+            id="templates"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+        >
             {/* Top Label */}
             <div className="inline-block bg-blue-100/30 border-2 border-blue-400 rounded-full px-6 py-2 mb-16 shadow-2xl">
                 <div className="flex items-center gap-2 justify-center">
@@ -228,7 +239,7 @@ const Showcase = () => {
                     </button>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

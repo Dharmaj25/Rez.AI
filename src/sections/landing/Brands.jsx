@@ -54,7 +54,7 @@ const Brands = () => {
           variants={textVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true}}
           className="mb-12 text-center pb-1"
         >
           <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-700 mb-3 leading-[1.25]">
@@ -78,7 +78,7 @@ const Brands = () => {
               variants={logoVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.4 }}
+              viewport={{ once: true}}
               className="relative flex items-center justify-center group"
             >
               <img

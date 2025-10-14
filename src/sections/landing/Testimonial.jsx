@@ -25,6 +25,10 @@ import Face20 from "../../assets/avatars/face20.jpg";
 import Face21 from "../../assets/avatars/face21.jpg";
 import Face23 from "../../assets/avatars/face23.jpg";
 
+// Framer Motion Imports
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
 const testimonials = [
   {
     name: "Mark Smith",
@@ -105,87 +109,85 @@ const testimonials = [
   },
 ];
 
-const testimonial2 =
-  [
-    {
-      name: "Jason Derulo",
-      avatar: Face12,
-      message:
-        "Rez.AI helped me launch my portfolio in a single day. It’s sleek, modern, and perfectly ATS-ready — I landed two interviews within a week!",
-      designation: "Frontend Developer, TechMahindra",
-    },
-    {
-      name: "Anna Griffinson",
-      avatar: Face13,
-      message:
-        "The design templates are absolutely stunning. It gave my portfolio a professional edge without spending hours designing manually.",
-      designation: "UI/UX Designer, Cognizant",
-    },
-    {
-      name: "Sergi Alvarez",
-      avatar: Face14,
-      message:
-        "I used Rez.AI to build a creative portfolio for my freelance projects. My clients now get impressed even before I pitch!",
-      designation: "Freelance Graphic Designer",
-    },
-    {
-      name: "Tasha Gimbert",
-      avatar: Face15,
-      message:
-        "It’s intuitive, fast, and well thought-out. Rez.AI made building my portfolio as easy as dragging and dropping sections.",
-      designation: "Full Stack Developer, Infosys",
-    },
-    {
-      name: "Jose Aldo",
-      avatar: Face16,
-      message:
-        "The templates reflect personality and clarity. My recruiter literally complimented my resume design during the interview.",
-      designation: "Marketing Specialist, Unilever",
-    },
-    {
-      name: "Nick James",
-      avatar: Face17,
-      message:
-        "From the moment I saw the preview feature, I knew this tool was built by people who truly understand developers.",
-      designation: "Software Engineer, Accenture",
-    },
-    {
-      name: "Dana White",
-      avatar: Face18,
-      message:
-        "Rez.AI made me fall in love with minimal portfolio designs. Everything feels premium yet simple to edit.",
-      designation: "Product Designer, Adobe",
-    },
-    {
-      name: "Kamaru Usman",
-      avatar: Face19,
-      message:
-        "I’ve tried multiple tools, but none match Rez.AI’s polish and usability. It’s become my go-to for all professional resumes.",
-      designation: "Recruiter, TCS",
-    },
-    {
-      name: "Dustin Poerier",
-      avatar: Face20,
-      message:
-        "The templates adapt beautifully to any content I add — from dev work to creative writing. Truly versatile.",
-      designation: "Content Strategist, HubSpot",
-    },
-    {
-      name: "Xhang Weili",
-      avatar: Face21,
-      message:
-        "The simplicity and quality blew me away. My portfolio went live within hours, and it’s already making a difference.",
-      designation: "Software Developer, Zoho",
-    },
-    {
-      name: "Ronda Rousey",
-      avatar: Face23,
-      message:
-        "A perfect balance of design and usability. Rez.AI helped me stand out in a crowd of generic resumes.",
-      designation: "UX Researcher, Swiggy",
-    },
-  ];
-
+const testimonial2 = [
+  {
+    name: "Jason Derulo",
+    avatar: Face12,
+    message:
+      "Rez.AI helped me launch my portfolio in a single day. It’s sleek, modern, and perfectly ATS-ready — I landed two interviews within a week!",
+    designation: "Frontend Developer, TechMahindra",
+  },
+  {
+    name: "Anna Griffinson",
+    avatar: Face13,
+    message:
+      "The design templates are absolutely stunning. It gave my portfolio a professional edge without spending hours designing manually.",
+    designation: "UI/UX Designer, Cognizant",
+  },
+  {
+    name: "Sergi Alvarez",
+    avatar: Face14,
+    message:
+      "I used Rez.AI to build a creative portfolio for my freelance projects. My clients now get impressed even before I pitch!",
+    designation: "Freelance Graphic Designer",
+  },
+  {
+    name: "Tasha Gimbert",
+    avatar: Face15,
+    message:
+      "It’s intuitive, fast, and well thought-out. Rez.AI made building my portfolio as easy as dragging and dropping sections.",
+    designation: "Full Stack Developer, Infosys",
+  },
+  {
+    name: "Jose Aldo",
+    avatar: Face16,
+    message:
+      "The templates reflect personality and clarity. My recruiter literally complimented my resume design during the interview.",
+    designation: "Marketing Specialist, Unilever",
+  },
+  {
+    name: "Nick James",
+    avatar: Face17,
+    message:
+      "From the moment I saw the preview feature, I knew this tool was built by people who truly understand developers.",
+    designation: "Software Engineer, Accenture",
+  },
+  {
+    name: "Dana White",
+    avatar: Face18,
+    message:
+      "Rez.AI made me fall in love with minimal portfolio designs. Everything feels premium yet simple to edit.",
+    designation: "Product Designer, Adobe",
+  },
+  {
+    name: "Kamaru Usman",
+    avatar: Face19,
+    message:
+      "I’ve tried multiple tools, but none match Rez.AI’s polish and usability. It’s become my go-to for all professional resumes.",
+    designation: "Recruiter, TCS",
+  },
+  {
+    name: "Dustin Poerier",
+    avatar: Face20,
+    message:
+      "The templates adapt beautifully to any content I add — from dev work to creative writing. Truly versatile.",
+    designation: "Content Strategist, HubSpot",
+  },
+  {
+    name: "Xhang Weili",
+    avatar: Face21,
+    message:
+      "The simplicity and quality blew me away. My portfolio went live within hours, and it’s already making a difference.",
+    designation: "Software Developer, Zoho",
+  },
+  {
+    name: "Ronda Rousey",
+    avatar: Face23,
+    message:
+      "A perfect balance of design and usability. Rez.AI helped me stand out in a crowd of generic resumes.",
+    designation: "UX Researcher, Swiggy",
+  },
+];
 
 // ✅ Testimonials Section
 const Testimonials = () => {
@@ -195,18 +197,14 @@ const Testimonials = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start px-10 sm:px-20 lg:px-24">
         {/* Left Section */}
         <div className="relative">
-          <h1
-            className="text-4xl sm:text-7xl font-extrabold text-gray-900 mb-5 text-center lg:text-left"
-          >
+          <h1 className="text-4xl sm:text-7xl font-extrabold text-gray-900 mb-5 text-center lg:text-left">
             Trusted by
             <br />
             <span className="text-blue-500">creators, developers</span>
             <br /> & designers
           </h1>
 
-          <p
-            className="text-lg sm:text-2xl text-gray-800/80 mt-6 text-center lg:text-left lg:max-w-[80%] "
-          >
+          <p className="text-lg sm:text-2xl text-gray-800/80 mt-6 text-center lg:text-left lg:max-w-[80%]">
             Professionals across the globe are crafting stunning portfolios and
             landing dream opportunities with{" "}
             <span className="text-blue-500 font-semibold">Rez.AI</span>. Built
@@ -255,16 +253,14 @@ const Testimonials = () => {
   );
 };
 
-
+// ✅ Testimonial Card
 const TestimonialCard = ({ testimonial }) => {
   const { name, message, designation, avatar } = testimonial;
 
   return (
-    <div
-      className="relative rounded-2xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)]
+    <div className="relative rounded-2xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)]
       border border-gray-100/70 px-10 py-12 w-[360px] flex flex-col justify-between
-      hover:shadow-[0_12px_40px_rgba(37,99,235,0.15)] transition-all duration-300"
-    >
+      hover:shadow-[0_12px_40px_rgba(37,99,235,0.15)] transition-all duration-300">
       {/* Quote Icon */}
       <Quote className="absolute top-6 left-6 text-blue-400 w-8 h-8" />
 
@@ -291,15 +287,43 @@ const TestimonialCard = ({ testimonial }) => {
   );
 };
 
-const Stat = ({ value, label }) => (
-  <div className="flex flex-col items-center lg:items-start w-64">
-    <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-blue-500 leading-none">
-      {value}
-    </h1>
-    <h4 className="mt-3 text-md md:text-lg font-semibold text-gray-700 whitespace-nowrap">
-      {label}
-    </h4>
-  </div>
-);
+// ✅ Stat with animated numbers
+const Stat = ({ value, label }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+
+  const numericValue = parseFloat(value); // get number from string
+  const isPercentage = typeof value === "string" && value.includes("%");
+  const isRating = typeof value === "string" && value.includes("★");
+  const isPlus = typeof value === "string" && value.includes("+");
+
+  const count = useMotionValue(0);
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(count, numericValue, {
+        duration: 2,
+        ease: "easeOut",
+        onUpdate: (v) => setDisplay(Math.floor(v)),
+      });
+      return () => controls.stop();
+    }
+  }, [isInView, count, numericValue]);
+
+  return (
+    <div ref={ref} className="flex flex-col items-center lg:items-start w-64">
+      <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-blue-500 leading-none">
+        {display}
+        {isPercentage && "%"}
+        {isRating && "★"}
+        {isPlus && "+"}
+      </h1>
+      <h4 className="mt-3 text-md md:text-lg font-semibold text-gray-700 whitespace-nowrap">
+        {label}
+      </h4>
+    </div>
+  );
+};
 
 export default Testimonials;
