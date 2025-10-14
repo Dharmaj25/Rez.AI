@@ -3,7 +3,7 @@ import {ArrowRight,Brain,Check,ClipboardCheck,Code,FileUser,Rocket,Sparkles,User
 
 export default function Hero() {
     return (
-        <div className="relative text-center my-16 sm:my-24 px-4 sm:px-8 overflow-hidden">
+        <div className="relative text-center my-16 sm:my-24 px-4 sm:px-8 overflow-hidden animate-drop-custom">
             {/* Floating Icons */}
             <div className="hidden lg:block bg-yellow-100 w-fit p-3 rounded-full rotate-15 absolute animate-float" style={{ left: "8%", top: "30%" }}>
                 <Zap size={30} className="text-yellow-300" />
