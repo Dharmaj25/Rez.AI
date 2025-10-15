@@ -4,7 +4,6 @@ import AiIllustration from "../../assets/illustrations/ai.png";
 import StyleIllustration from "../../assets/illustrations/style.png";
 import ShineIllustration from "../../assets/illustrations/shine2.png";
 
-import { motion } from "framer-motion";
 
 
 const Process = () => {
@@ -73,13 +72,9 @@ const Process = () => {
     ];
 
     return (
-        <motion.div
+        <div
             className="text-center my-20 py-14 px-8"
             id="features"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
         >
             {/* ======= Heading Section ======= */}
             <div className="text-center">
@@ -200,7 +195,7 @@ const Process = () => {
                     </div>
                 ))}
             </div>
-        </motion.div>
+        </div>
     );
 };
 

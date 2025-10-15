@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
   Brain,
   Sparkles,
@@ -57,13 +56,9 @@ const Features = () => {
   ];
 
   return (
-    <motion.div
+    <div
       className="text-center my-20 bg-stone-100/70 py-14 px-8"
       id="features"
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       {/* Headings */}
       <h1 className="text-4xl sm:text-6xl font-extrabold text-gray-900 mb-2">
@@ -120,7 +115,7 @@ const Features = () => {
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
