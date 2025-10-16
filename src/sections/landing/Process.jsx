@@ -149,12 +149,12 @@ const Process = () => {
                                 {index % 2 !== 0 ? (
                                     <div>
                                         <h3
-                                            className="font-bold text-2xl mb-2"
+                                            className="font-bold text-2xl mb-2 text-left"
                                             style={{ whiteSpace: "nowrap" }}
                                         >
                                             {step.title}
                                         </h3>
-                                        <p className="text-md text-muted-foreground font-semibold">
+                                        <p className="text-md text-muted-foreground font-semibold text-left">
                                             {step.description}
                                         </p>
                                     </div>

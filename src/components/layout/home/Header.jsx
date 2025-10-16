@@ -1,19 +1,9 @@
 import { useState } from "react";
-import { Button } from "../ui/button";
-import {
-    ArrowRight,
-    FileUser,
-    HandCoins,
-    LayoutPanelTop,
-    Smile,
-    Zap,
-    Menu,
-    X,
-    MessageCircleQuestionMark,
-} from "lucide-react";
+import { Button } from "../../../components/ui/button";
+import {ArrowRight,FileUser,HandCoins,LayoutPanelTop,Smile,Zap,Menu,X,MessageCircleQuestionMark} from "lucide-react";
 
 
-export default function Header() {
+const HomeHeader = () => {
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
     const [isAnimatingOut, setIsAnimatingOut] = useState(false);
 
@@ -126,3 +116,5 @@ export default function Header() {
         </header>
     );
 }
+
+export default HomeHeader;
