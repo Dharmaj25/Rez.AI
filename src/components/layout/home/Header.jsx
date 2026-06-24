@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../../components/ui/button";
 import {ArrowRight,FileUser,HandCoins,LayoutPanelTop,Smile,Zap,Menu,X,MessageCircleQuestionMark} from "lucide-react";
+import { Link } from "react-router-dom";
 
 
 const HomeHeader = () => {
@@ -80,7 +81,7 @@ const HomeHeader = () => {
 
                 {/* CTA Button (Desktop) */}
                 <Button className="hidden lg:flex rounded-xl bg-blue-500 hover:bg-blue-600 items-center gap-2 transition-transform duration-300 hover:scale-105">
-                    Get Started
+                    <Link to="/login">Get Started</Link>
                     <ArrowRight className="h-4 w-4" />
                 </Button>
 

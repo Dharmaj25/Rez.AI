@@ -71,6 +71,15 @@ export default {
             height: '0'
           }
         },
+        "slide-r-to-l" : 
+        {
+          "0%" : {
+              transform: 'translateX(100px)', opacity: '0'
+          },
+          "100%" : {
+              transform: "translateX(0px)", opacity: "1"
+          }
+        },
         "drop-custom": {
           "0%": {
             transform: 'translateY(-50px)', opacity: '0'
@@ -78,6 +87,14 @@ export default {
           "100%": {
             transform: "translateY(0px)", opacity: "1"
           }
+        },
+         wave: {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '15%': { transform: 'rotate(14deg)' },
+          '30%': { transform: 'rotate(-8deg)' },
+          '45%': { transform: 'rotate(14deg)' },
+          '60%': { transform: 'rotate(-4deg)' },
+          '75%': { transform: 'rotate(10deg)' },
         },
         'grow-blink': {
           '0%, 100%': { transform: 'scale(1)', opacity: '1' },
@@ -112,6 +129,12 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'drop-custom': 'drop-custom 1.2s ease forwards',
+        "slide-r-to-l-1" : "slide-r-to-l 1.2s ease forwards",
+        "slide-r-to-l-2" : "slide-r-to-l 1.6s ease forwards",
+        "slide-r-to-l-3" : "slide-r-to-l 2.0s ease forwards",
+        "slide-r-to-l-4" : "slide-r-to-l 2.4s ease forwards",
+        "slide-l-to-r" : "slide-r-to-l 1.2s ease reverse",
+        "wave": 'wave 2s ease-in-out infinite',
         'grow-blink': 'grow-blink 1.5s ease-in-out infinite',
         'slide': 'slide 150s linear infinite',
         'slide-reverse': 'slide-reverse 150s linear infinite reverse',

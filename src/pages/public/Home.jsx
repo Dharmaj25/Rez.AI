@@ -7,8 +7,6 @@ import Testimonials from "@/sections/landing/Testimonial";
 import PricingSection from "@/sections/landing/Pricing";
 import Faqs from "@/sections/landing/FAQs";
 import Cta from "@/sections/landing/Cta";
-import Footer from "@/sections/landing/Footer";
-import Header from "@/sections/landing/Header";
 
 const Home = () => {
     return (
