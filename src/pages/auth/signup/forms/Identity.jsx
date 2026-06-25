@@ -54,15 +54,7 @@ const Identity = ({ setStep = () => { }, setFormStep = () => {} }) => {
                 />
             </div>
 
-            <div className="grid grid-cols-2 gap-3 mb-5">
-                {/* <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-gray-500 uppercase">Password</label>
-                    <input type="password" className="w-full h-8 px-3 text-sm border border-gray-300 rounded-md focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition" />
-                </div>
-                <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-gray-500 uppercase">Confirm Password</label>
-                    <input type="password" className="w-full h-8 px-3 text-sm border border-gray-300 rounded-md focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition" />
-                </div> */}
+            <div className="grid grid-cols-2 gap-3 mb-1">
             </div>
 
 
