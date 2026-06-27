@@ -25,7 +25,6 @@ function AppRoutes() {
         <Route path="/dashboard" element={<Dashboard />} />
       </Route>
 
-
       {/* 404 : Not Found */}
       <Route path="*" element={<NotFound />} />
     </Routes>

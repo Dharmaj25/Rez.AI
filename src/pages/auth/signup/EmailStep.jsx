@@ -4,7 +4,6 @@ import GithubLogo from "../../../assets/brands/github-logo.png";
 import LinkedinLogo from "../../../assets/brands/linkedin-logo.png";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
-import axios from "axios";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -60,18 +59,13 @@ const EmailStep = ({ setStep = () => { } }) => {
     }
     setsubmittingEmail(true)
     try {
-      await axios.post(`${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/auth/send-otp`, { email });
-      setStep("otp");
-    } catch (error) {
-      toast.warning("OTP Already Sent", {
-        description: "Check your inbox or continue verification.",
-        action: {
-          label: "Enter OTP",
-          onClick: () => setStep("otp"),
-        },
-      });
     }
-    setsubmittingEmail(false)
+    catch (error) {
+
+    }
+    finally {
+      setsubmittingEmail(false);
+    }
   }
 
 

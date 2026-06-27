@@ -11,41 +11,30 @@ function App() {
   const logout = useAuthStore(state => state.logout);
   const setLoading = useAuthStore(state => state.setLoading);
 
-
   useEffect(() => {
     const init = async () => {
       try {
-        let response = await initializeAuth();
-        if (response.status === 200) {
-          setUser(response.data.user);
-          setLoading(false);
-          return;
-        }
+        const response = await initializeAuth();
+        setUser(response.data.user);
+      } catch (err) {
+        if (err.response?.status === 401) {
+          try {
+            const response = await refreshAccessToken();
+            setAccessToken(response.data.accessToken);
 
-        response = await refreshAccessToken();
-        if (response.status !== 200) {
+            const meResponse = await initializeAuth();
+            setUser(meResponse.data.user);
+          } catch (err) {
+            logout();
+          }
+        } else {
           logout();
-          setLoading(false);
-          return;
         }
-
-        setAccessToken(response.data.accessToken);
-
-        response = await initializeAuth();
-        if (response.status === 200) {
-          setUser(response.data.user);
-          setLoading(false);
-          return;
-        }
-        logout();
+      } finally {
         setLoading(false);
       }
-      catch (err) {
-        logout();
-        setLoading(false);
-      }
-
     };
+
     init();
   }, []);
 
