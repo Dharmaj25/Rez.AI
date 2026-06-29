@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <AppRoutes />
-      <Toaster />
+      <Toaster closeButton={true} />
     </>
   );
 }

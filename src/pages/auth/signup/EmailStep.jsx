@@ -2,10 +2,11 @@ import { FileUser, InfoIcon } from "lucide-react";
 import GoogleLogo from "../../../assets/brands/google-logo.png";
 import GithubLogo from "../../../assets/brands/github-logo.png";
 import LinkedinLogo from "../../../assets/brands/linkedin-logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { getOtp } from "@/services/authService";
 
 
 const socialButtons = [
@@ -14,7 +15,9 @@ const socialButtons = [
   { image: LinkedinLogo, title: "LinkedIn" },
 ];
 
-const EmailStep = ({ setStep = () => { } }) => {
+const EmailStep = ({ setStep = () => { }, nextStepMap = {}}) => {
+
+  const navigate = useNavigate();
   const defaultEmailValidation = {
     touched: false,
     isValid: false,
@@ -59,9 +62,18 @@ const EmailStep = ({ setStep = () => { } }) => {
     }
     setsubmittingEmail(true)
     try {
+      const response = await getOtp(email);
+      const nextStep = response?.data?.user?.accountSetupStep || "EMAIL";
+      if(nextStep === "COMPLETED"){
+        toast.info("Onboarding completed", {
+          description: "Your onboarding is complete, please login to access your account"
+        });
+        navigate("/login");
+      }
+      setStep(nextStepMap[nextStep]);
     }
     catch (error) {
-
+      console.log("Internal server error: ", error);
     }
     finally {
       setsubmittingEmail(false);

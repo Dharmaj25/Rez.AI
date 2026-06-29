@@ -1,7 +1,7 @@
 import api from "@/lib/api";
 const authEndpoint = "/api/v1/auth"
 
-export const sendEmail = (email) => {
+export const getOtp = (email) => {
     return api.post(`${authEndpoint}/send-otp`, {email});
 }
 

@@ -4,9 +4,17 @@ import OtpStep from "./OtpStep";
 import DetailsStep from "./DetailsStep";
 import { Rocket, HandHeart } from "lucide-react";
 import { Link } from "react-router-dom";
+import PasswordStep from "./PasswordStep";
 
 const SignUp = () => {
   const [step, setStep] = useState("email");
+  const nextStepMap = {
+    "EMAIL": "email",
+    "OTP_VERIFICATION": "otp",
+    "PASSWORD_SETUP": "password",
+    "PERSONAL_DETAILS": "details"
+  }
+
 
   return (
     <div className="min-h-screen flex">
@@ -102,11 +110,11 @@ bg-gradient-to-br from-indigo-500 via-blue-600 to-indigo-500">
       </div>
       {/* RIGHT PANEL */}
       <div className="flex-1 flex items-center justify-center bg-white px-4 sm:px-6">
-        {step === "email" && <EmailStep setStep={setStep} />}
-        {step === "otp" && <OtpStep setStep={setStep} />}
-        {step === "details" && <DetailsStep setStep={setStep} />}
+        {step === "email" && <EmailStep setStep={setStep} nextStepMap={nextStepMap} />}
+        {step === "otp" && <OtpStep setStep={setStep} nextStepMap={nextStepMap} />}
+        {step === "password" && <PasswordStep setStep={setTimeout} nextStepMap={nextStepMap} />}
+        {step === "details" && <DetailsStep setStep={setStep} nextStepMap={nextStepMap} />}
       </div>
-
     </div>
   );
 };
