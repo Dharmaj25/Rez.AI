@@ -8,6 +8,7 @@ import PasswordStep from "./PasswordStep";
 
 const SignUp = () => {
   const [step, setStep] = useState("email");
+  const [email, setEmail] = useState(null);
   const nextStepMap = {
     "EMAIL": "email",
     "OTP_VERIFICATION": "otp",
@@ -15,13 +16,11 @@ const SignUp = () => {
     "PERSONAL_DETAILS": "details"
   }
 
-
   return (
     <div className="min-h-screen flex">
 
       {/* LEFT PANEL */}
-      <div className="hidden lg:flex w-1/2 relative overflow-hidden
-bg-gradient-to-br from-indigo-500 via-blue-600 to-indigo-500">
+      <div className="hidden lg:flex w-1/2 relative overflow-hidden bg-gradient-to-br from-indigo-500 via-blue-600 to-indigo-500">
 
         {/* soft glow */}
         <div className="absolute -top-24 -left-24 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
@@ -110,8 +109,8 @@ bg-gradient-to-br from-indigo-500 via-blue-600 to-indigo-500">
       </div>
       {/* RIGHT PANEL */}
       <div className="flex-1 flex items-center justify-center bg-white px-4 sm:px-6">
-        {step === "email" && <EmailStep setStep={setStep} nextStepMap={nextStepMap} />}
-        {step === "otp" && <OtpStep setStep={setStep} nextStepMap={nextStepMap} />}
+        {step === "email" && <EmailStep setStep={setStep} nextStepMap={nextStepMap} updateEmail={setEmail} />}
+        {step === "otp" && <OtpStep setStep={setStep} nextStepMap={nextStepMap} email={email} />}
         {step === "password" && <PasswordStep setStep={setTimeout} nextStepMap={nextStepMap} />}
         {step === "details" && <DetailsStep setStep={setStep} nextStepMap={nextStepMap} />}
       </div>

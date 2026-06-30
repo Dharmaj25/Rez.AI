@@ -12,3 +12,11 @@ export const initializeAuth = () => {
 export const refreshAccessToken = () => {
     return api.get(`${authEndpoint}/refresh`);
 }
+
+export const resendOtp = (email) => {
+    return api.post(`${authEndpoint}/resend-otp`, {email});
+}
+
+export const verifyOtp = (email, otp) => {
+    return api.post(`${authEndpoint}/verify-otp`, {email, otp});
+}
