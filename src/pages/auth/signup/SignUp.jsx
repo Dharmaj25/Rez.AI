@@ -111,7 +111,7 @@ const SignUp = () => {
       <div className="flex-1 flex items-center justify-center bg-white px-4 sm:px-6">
         {step === "email" && <EmailStep setStep={setStep} nextStepMap={nextStepMap} updateEmail={setEmail} />}
         {step === "otp" && <OtpStep setStep={setStep} nextStepMap={nextStepMap} email={email} />}
-        {step === "password" && <PasswordStep setStep={setTimeout} nextStepMap={nextStepMap} />}
+        {step === "password" && <PasswordStep setStep={setStep} nextStepMap={nextStepMap} email={email} />}
         {step === "details" && <DetailsStep setStep={setStep} nextStepMap={nextStepMap} />}
       </div>
     </div>
