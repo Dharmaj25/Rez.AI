@@ -33,9 +33,8 @@ const StepCircle = ({ stepNum, currentStep, label }) => {
     );
 };
 
-const OnboardingFlow = ({ setFormStep = () => { } }) => {
+const OnboardingFlow = ({ setFormStep = () => { } , email}) => {
     const [step, setStep] = useState(1);
-    const [formData, setFormData] = useState({ firstName: "", lastName: "", phone: "", location: "" });
     const progressWidth = `${((step - 1) / 2) * 100}%`;
 
     return (
@@ -90,7 +89,7 @@ const OnboardingFlow = ({ setFormStep = () => { } }) => {
                     exit={{ x: -15, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                 >
-                    {step === 1 && <Identity setStep={setStep} setFormStep={setFormStep} />}
+                    {step === 1 && <Identity setStep={setStep} setFormStep={setFormStep} email={email} />}
                     {step === 2 && <Experience setStep={setStep} />}
                     {step === 3 && <CareerSummary setStep={setStep} />}
                 </motion.div>

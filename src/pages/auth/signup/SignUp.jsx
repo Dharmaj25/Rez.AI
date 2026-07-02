@@ -112,7 +112,7 @@ const SignUp = () => {
         {step === "email" && <EmailStep setStep={setStep} nextStepMap={nextStepMap} updateEmail={setEmail} />}
         {step === "otp" && <OtpStep setStep={setStep} nextStepMap={nextStepMap} email={email} />}
         {step === "password" && <PasswordStep setStep={setStep} nextStepMap={nextStepMap} email={email} />}
-        {step === "details" && <DetailsStep setStep={setStep} nextStepMap={nextStepMap} />}
+        {step === "details" && <DetailsStep setFormStep={setStep} nextStepMap={nextStepMap} email={email} />}
       </div>
     </div>
   );
