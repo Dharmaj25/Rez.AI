@@ -11,7 +11,6 @@ const Identity = ({ setStep = () => { }, setFormStep = () => { }, email }) => {
     const setAccessToken = useAuthStore((state) => state.setAccessToken);
 
     const [rawPhone, setRawPhone] = useState("");
-
     const [values, setValues] = useState({
         email: email || "",
         first_name: "",
