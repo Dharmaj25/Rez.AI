@@ -10,7 +10,7 @@ const socialButtons = [
   { image: LinkedinLogo, title: "LinkedIn" },
 ];
 
-const Login = () => {
+const Login = ({setStep = () => {}}) => {
   return (
     <div className="min-h-screen flex">
 
