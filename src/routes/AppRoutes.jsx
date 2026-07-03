@@ -4,10 +4,10 @@ import HomeLayout from "../layouts/HomeLayout";
 import MainLayout from "../layouts/MainLayout";
 
 import Home from "../pages/public/Home";
-import Login from "../pages/auth/Login";
 import Dashboard from "../pages/private/Dashboard";
 import NotFound from "../pages/public/NotFound";
 import SignUp from "@/pages/auth/signup/SignUp";
+import Login from "@/pages/auth/login/Login";
 
 import GuestRoute from "./GuestRoute";
 import ProtectedRoute from "./ProtectedRoute";

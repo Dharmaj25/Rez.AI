@@ -28,3 +28,7 @@ export const setPassword = (email, password, confirmPassword) => {
 export const login = (email, password) => {
     return api.post(`${authEndpoint}/login`, {email, password});
 }
+
+export const sendPasswordResetLink = (email) => {
+    return api.post(`${authEndpoint}/forgot-password`, {email});
+}
