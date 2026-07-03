@@ -24,3 +24,7 @@ export const verifyOtp = (email, otp) => {
 export const setPassword = (email, password, confirmPassword) => {
     return api.post(`${authEndpoint}/set-password`, { email, password, confirmPassword });
 }
+
+export const login = (email, password) => {
+    return api.post(`${authEndpoint}/login`, {email, password});
+}
