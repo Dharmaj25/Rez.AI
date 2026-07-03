@@ -18,10 +18,10 @@ const Identity = ({ setStep = () => { }, setFormStep = () => { }, email }) => {
         country: "",
         state: "",
         city: "",
-        number: "",        
-        country_code: "+91" 
+        number: "",
+        country_code: "+91"
     });
-    
+
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -41,17 +41,17 @@ const Identity = ({ setStep = () => { }, setFormStep = () => { }, email }) => {
     };
 
     const handlePhoneChange = (phone, { country }) => {
-        setRawPhone(phone); 
+        setRawPhone(phone);
 
         const dialCodeWithPlus = `+${country?.dialCode}`;
-        
+
         const cleanFullPhone = phone.replace(/[\s()-]/g, "");
         const nationalNumber = cleanFullPhone.startsWith(dialCodeWithPlus)
             ? cleanFullPhone.replace(dialCodeWithPlus, "")
             : cleanFullPhone;
 
-        setValues((prev) => ({ 
-            ...prev, 
+        setValues((prev) => ({
+            ...prev,
             number: nationalNumber,
             country_code: dialCodeWithPlus
         }));
@@ -80,7 +80,7 @@ const Identity = ({ setStep = () => { }, setFormStep = () => { }, email }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+
         if (!validateForm()) return;
 
         try {
@@ -195,9 +195,8 @@ const Identity = ({ setStep = () => { }, setFormStep = () => { }, email }) => {
                     value={rawPhone}
                     onChange={handlePhoneChange}
                     className="w-full"
-                    inputClassName={`w-full px-3 py-2 border rounded-r-md text-sm h-8 focus:outline-none transition ${
-                        errors.number ? "border-red-500 ring-1 ring-red-500" : "border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                    }`}
+                    inputClassName={`w-full px-3 py-2 border rounded-r-md text-sm h-8 focus:outline-none transition ${errors.number ? "border-red-500 ring-1 ring-red-500" : "border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                        }`}
                     countrySelectorStyleProps={{
                         buttonClassName: `h-8 border rounded-l-md px-2 ${errors.number ? "border-red-500" : "border-gray-300"}`,
                     }}
@@ -207,14 +206,17 @@ const Identity = ({ setStep = () => { }, setFormStep = () => { }, email }) => {
                 )}
             </div>
 
+
             <button
                 type="submit"
-                disabled={isSubmitting}
-                className="group w-full h-9 cursor-pointer bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-1 disabled:bg-blue-400 disabled:cursor-not-allowed"
+                className={`group w-full h-9 cursor-pointer text-white text-sm font-medium rounded-lg transition flex items-center justify-center gap-1
+                    ${isSubmitting ? "bg-blue-400 hover:bg-blue-400" : "bg-blue-600 hover:bg-blue-700"}
+                    `}
             >
-                {isSubmitting ? <Spinner /> : 
+
+                {isSubmitting ? <Spinner /> :
                     <>
-                        Continue to Careers
+                        Continue
                         <ArrowRight
                             size={14}
                             className="transition-transform duration-200 group-hover:translate-x-1"
@@ -222,7 +224,6 @@ const Identity = ({ setStep = () => { }, setFormStep = () => { }, email }) => {
                     </>
                 }
             </button>
-
             <button
                 type="button"
                 disabled={isSubmitting}

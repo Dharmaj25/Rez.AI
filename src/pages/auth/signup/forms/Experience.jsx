@@ -21,7 +21,7 @@ const Experience = ({ setStep = () => { } }) => {
     });
 
     const [errors, setErrors] = useState({});
-    const [submitting, setSubmitting] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -81,7 +81,7 @@ const Experience = ({ setStep = () => { } }) => {
         if (!isFormValid) { return };
 
         try {
-            setSubmitting(true);
+            setIsSubmitting(true);
             const response = await saveProfessionalDetails(values);
             setStep(3);
         } catch (error) {
@@ -91,7 +91,7 @@ const Experience = ({ setStep = () => { } }) => {
             })
         }
         finally {
-            setSubmitting(false)
+            setIsSubmitting(false)
         }
     };
 
@@ -287,13 +287,20 @@ const Experience = ({ setStep = () => { } }) => {
 
             <button
                 type="submit"
-                className="group w-full h-9 cursor-pointer bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-1"
+                className={`group w-full h-9 cursor-pointer text-white text-sm font-medium rounded-lg transition flex items-center justify-center gap-1
+                    ${isSubmitting ? "bg-blue-400 hover:bg-blue-400" : "bg-blue-600 hover:bg-blue-700"}
+                    `}
             >
-                Add your summary
-                <ArrowRight
-                    size={14}
-                    className="transition-transform duration-200 group-hover:translate-x-1"
-                />
+
+                {isSubmitting ? <Spinner /> :
+                    <>
+                        Add your summary
+                        <ArrowRight
+                            size={14}
+                            className="transition-transform duration-200 group-hover:translate-x-1"
+                        />
+                    </>
+                }
             </button>
 
             <button

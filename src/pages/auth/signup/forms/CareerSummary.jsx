@@ -14,6 +14,7 @@ const CareerSummary = ({ setStep = () => { } }) => {
         "pitch": ""
     });
     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
 
     const handleInputChange = (event) => {
@@ -39,7 +40,7 @@ const CareerSummary = ({ setStep = () => { } }) => {
         const isFormValid = validateForm();
 
         if (isFormValid) {
-            setSubmitting(true);
+            setIsSubmitting(true);
             try {
                 const response = await saveCareerSummary(values);
                 const userData = response?.data?.user || null;
@@ -53,7 +54,7 @@ const CareerSummary = ({ setStep = () => { } }) => {
                 });
             }
             finally {
-                setSubmitting(false);
+                setIsSubmitting(false);
             }
         }
     }
@@ -68,12 +69,10 @@ const CareerSummary = ({ setStep = () => { } }) => {
 
     const errorMessageClass = "text-[11px] text-red-500 font-medium flex items-center gap-1 mt-1"
 
-    
+
     return (
         <div className="animate-in fade-in slide-in-from-right-4 duration-300">
-            <form
-                onSubmit={(event) => handleSubmit(event)}
-            >
+            <form onSubmit={(event) => handleSubmit(event)}>
                 <div className="bg-blue-50 border border-blue-100 p-3 rounded-lg mb-4">
                     <p className="text-[11px] text-blue-700 leading-tight">
                         <strong>Pro-Tip:</strong> Mention your biggest achievement!
@@ -96,44 +95,50 @@ const CareerSummary = ({ setStep = () => { } }) => {
                     />
                     {errors.target_role && (
                         <p className={errorMessageClass}>
-                            <Info size={12} /> {errors.industry}
+                            <Info size={12} /> {errors.target_role}
                         </p>
                     )}
                 </div>
 
                 {/* The Pitch */}
-                <div className="space-y-1 mb-5">
+                <div className="space-y-1 mb-5 flex flex-col">
                     <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">
                         Professional Pitch
                     </label>
                     <textarea
-                        rows={4}
+                        rows={6}
                         name="pitch"
                         value={values.pitch}
                         onChange={(event) => handleInputChange(event)}
                         placeholder="Describe your career goals and top skills in 1-2 sentences..."
-                        className={getInputClass("pitch")}
+                        className={`${getInputClass("pitch")} h-full p-2`}
                     />
                     {errors.pitch && (
                         <p className={errorMessageClass}>
-                            <Info size={12} /> {errors.industry}
+                            <Info size={12} /> {errors.pitch}
                         </p>
                     )}
                 </div>
 
                 <button
                     type="submit"
-                    className="group w-full h-10 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className={`w-full h-9 rounded-lg text-sm font-medium text-white transition flex justify-center gap-1 items-center ${isSubmitting
+                        ? "bg-blue-400 hover:bg-blue-400"
+                        : "bg-blue-600 hover:bg-blue-700"
+                        }`}
                 >
-                    Launch My Dashboard
-                    <Rocket size={16} />
+                    {isSubmitting ? <Spinner /> :
+                        <>
+                            Launch My Dashboard
+                               <Rocket size={16} />
+                        </>
+                    }
                 </button>
-
-
             </form>
             <button
                 type="button"
-                onClick={setStep(2)}
+                onClick={() => setStep(2)}
                 className="w-full mt-3 text-[13px] text-blue-500 hover:text-blue-700 font-medium transition hover:underline cursor-pointer"
             >
                 <ArrowLeft size={12} className="text-blue-500 inline mr-1" />
