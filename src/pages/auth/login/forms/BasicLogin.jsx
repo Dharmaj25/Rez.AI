@@ -5,8 +5,8 @@ import GoogleLogo from "../../../../assets/brands/google-logo.png";
 import GithubLogo from "../../../../assets/brands/github-logo.png";
 import LinkedinLogo from "../../../../assets/brands/linkedin-logo.png";
 import { ArrowRight, FileUser, Info } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
 const socialButtons = [
@@ -15,10 +15,12 @@ const socialButtons = [
     { image: LinkedinLogo, title: "LinkedIn" },
 ];
 
-const BasicLogin = ({setCurrentScreen = () => {}}) => {
+const BasicLogin = ({ setCurrentScreen = () => { } }) => {
     const [values, setValues] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [searchParams] = useSearchParams();
+
 
     const setUser = useAuthStore((state) => state.setUser);
     const navigate = useNavigate();
@@ -76,6 +78,17 @@ const BasicLogin = ({setCurrentScreen = () => {}}) => {
             ? `${baseClass} border-red-500 ring-1 ring-red-500`
             : `${baseClass} border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500`;
     };
+
+    useEffect(() => {
+        if (searchParams.get("reset") === "true") {
+            toast.success("Password reset successfully", {
+                description: "You can now sign in with your new password"
+            });
+
+            navigate("/login", { replace: true });
+        }
+
+    }, [])
 
 
     const errorMessageClass = "text-[11px] text-red-500 font-medium flex items-center gap-1 mt-1"

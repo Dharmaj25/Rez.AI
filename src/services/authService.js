@@ -32,3 +32,11 @@ export const login = (email, password) => {
 export const sendPasswordResetLink = (email) => {
     return api.post(`${authEndpoint}/forgot-password`, {email});
 }
+
+export const checkResetToken = (token) => {
+    return api.get(`${authEndpoint}/reset-password/validate?token=${token}`)
+}
+
+export const resetPassword = (token, password , confirmPassword) => {
+    return api.patch(`${authEndpoint}/reset-password`, {token, password, confirmPassword});
+}

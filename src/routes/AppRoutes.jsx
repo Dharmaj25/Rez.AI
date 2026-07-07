@@ -11,6 +11,7 @@ import Login from "@/pages/auth/login/Login";
 
 import GuestRoute from "./GuestRoute";
 import ProtectedRoute from "./ProtectedRoute";
+import ResetPassword from "@/pages/auth/ResetPassword";
 
 function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ function AppRoutes() {
       <Route element={<GuestRoute><HomeLayout /></GuestRoute>} ><Route path="/" element={<Home />} /></Route>
       <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
       <Route path="/signup" element={<GuestRoute><SignUp /></GuestRoute>} />
+      <Route path="/reset-password" element={<GuestRoute><ResetPassword /></GuestRoute>} />
 
       {/* Protected Routes */}
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>} >
