@@ -305,6 +305,22 @@ const Experience = ({ setStep = () => { } }) => {
 
             <button
                 type="button"
+                onClick={() => setStep(3)}
+                disabled={isSubmitting}
+                className={`mt-2 group w-full h-9 rounded-lg border text-sm font-medium transition-all duration-200 flex items-center justify-center gap-1
+        ${isSubmitting
+                        ? "cursor-not-allowed border-blue-200 text-blue-300 bg-blue-50"
+                        : "cursor-pointer border-blue-200 text-blue-600 bg-white hover:bg-blue-50 hover:border-blue-300"
+                    }`}
+            >
+                Skip for now
+                <ArrowRight
+                    size={14}
+                    className="transition-transform duration-200 group-hover:translate-x-1"
+                />
+            </button>
+            <button
+                type="button"
                 onClick={() => setStep(1)}
                 className="w-full mt-3 text-[13px] text-blue-500 hover:text-blue-700 font-medium transition hover:underline cursor-pointer"
             >
@@ -312,7 +328,7 @@ const Experience = ({ setStep = () => { } }) => {
                     size={12}
                     className="text-blue-500 inline mr-1"
                 />
-                Go Back to Experience
+                Go Back to Personal Details
             </button>
         </form>
     );

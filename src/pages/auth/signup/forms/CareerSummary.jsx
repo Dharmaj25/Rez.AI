@@ -1,10 +1,11 @@
 import { saveCareerSummary } from "@/services/userService";
-import { Rocket, ArrowLeft, Info } from "lucide-react";
+import { Rocket, ArrowLeft, Info, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "sonner";
 import useAuthStore from "@/stores/authStore";
+import { initializeAuth as fetchUser } from "@/services/authService";
 
 
 const CareerSummary = ({ setStep = () => { } }) => {
@@ -42,8 +43,8 @@ const CareerSummary = ({ setStep = () => { } }) => {
         if (isFormValid) {
             setIsSubmitting(true);
             try {
-                const response = await saveCareerSummary(values);
-                const userData = response?.data?.user || null;
+                await saveCareerSummary(values);
+                const userData = await getUser();
                 setUser(userData);
                 navigate("/dashboard");
             }
@@ -59,7 +60,6 @@ const CareerSummary = ({ setStep = () => { } }) => {
         }
     }
 
-
     const getInputClass = (fieldName) => {
         const baseClass = "w-full h-8 px-3 text-sm border rounded-md outline-none transition";
         return errors[fieldName]
@@ -67,8 +67,27 @@ const CareerSummary = ({ setStep = () => { } }) => {
             : `${baseClass} border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500`;
     };
 
-    const errorMessageClass = "text-[11px] text-red-500 font-medium flex items-center gap-1 mt-1"
+    const getUser = async () => {
+        try {
+            const response = await fetchUser();
+            const user = response?.data?.user || {};
+            return user;
+        }
+        catch (error) {
+            const errorMessage = error?.response?.data?.message
+            toast.error("Error occured while redirecting", {
+                description: errorMessage
+            })
+        }
+    }
 
+    const handleSkip = async () => {
+        const user = await fetchUser();
+        setUser(user);
+        navigate("/dashboard");
+    }
+
+    const errorMessageClass = "text-[11px] text-red-500 font-medium flex items-center gap-1 mt-1"
 
     return (
         <div className="animate-in fade-in slide-in-from-right-4 duration-300">
@@ -131,11 +150,28 @@ const CareerSummary = ({ setStep = () => { } }) => {
                     {isSubmitting ? <Spinner /> :
                         <>
                             Launch My Dashboard
-                               <Rocket size={16} />
+                            <Rocket size={16} />
                         </>
                     }
                 </button>
             </form>
+
+            <button
+                type="button"
+                onClick={() => handleSkip()}
+                disabled={isSubmitting}
+                className={`mt-2 group w-full h-9 rounded-lg border text-sm font-medium transition-all duration-200 flex items-center justify-center gap-1
+        ${isSubmitting
+                        ? "cursor-not-allowed border-blue-200 text-blue-300 bg-blue-50"
+                        : "cursor-pointer border-blue-200 text-blue-600 bg-white hover:bg-blue-50 hover:border-blue-300"
+                    }`}
+            >
+                Skip for now
+                <ArrowRight
+                    size={14}
+                    className="transition-transform duration-200 group-hover:translate-x-1"
+                />
+            </button>
             <button
                 type="button"
                 onClick={() => setStep(2)}
