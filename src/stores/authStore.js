@@ -4,7 +4,7 @@ const useAuthStore = create((set) => ({
     user: null,
     isAuthenticated: false,
     loading: true,
-    acceesToken: null,
+    accessToken: null,
 
     setUser: (userData) => {
         set({

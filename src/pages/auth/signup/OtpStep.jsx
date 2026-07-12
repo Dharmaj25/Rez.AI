@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FileUser, ArrowLeft, Info } from "lucide-react";
 import OTPInput from "react-otp-input";
 import { resendOtp, verifyOtp } from "@/services/authService";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { SignupContext } from "./SignUpContext";
 
-const OtpStep = ({ setStep = () => { }, email, nextStepMap }) => {
+const OtpStep = () => {
     const [otp, setOtp] = useState("");
     const [timer, setTimer] = useState(0);
     const [isResendingOtp, setIsResendingOtp] = useState(false);
@@ -14,6 +15,9 @@ const OtpStep = ({ setStep = () => { }, email, nextStepMap }) => {
         isValid: true,
         error: ""
     });
+
+    const {email, setStep, nextStepMap} = useContext(SignupContext);
+    
 
     useEffect(() => {
         if (timer <= 0) return;
@@ -154,7 +158,6 @@ const OtpStep = ({ setStep = () => { }, email, nextStepMap }) => {
                         </button>
                     </div>
 
-                    {/* verify */}
                     <button
                         onClick={verifyEmail}
                         disabled={verifyingEmail}

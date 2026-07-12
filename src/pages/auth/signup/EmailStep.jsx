@@ -3,10 +3,11 @@ import GoogleLogo from "../../../assets/brands/google-logo.png";
 import GithubLogo from "../../../assets/brands/github-logo.png";
 import LinkedinLogo from "../../../assets/brands/linkedin-logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { getOtp } from "@/services/authService";
+import { SignupContext } from "./SignUpContext";
 
 const socialButtons = [
   { image: GoogleLogo, title: "Google" },
@@ -33,12 +34,13 @@ const validateEmail = (email) => {
   return "";
 };
 
-const EmailStep = ({ setStep = () => { }, nextStepMap = {}, updateEmail = () => { } }) => {
+const EmailStep = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
   const [validation, setValidation] = useState(INITIAL_VALIDATION);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const {email, setEmail, setStep, nextStepMap } = useContext(SignupContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -70,7 +72,7 @@ const EmailStep = ({ setStep = () => { }, nextStepMap = {}, updateEmail = () => 
       const step = nextStepMap[nextStep];
 
       if (step !== undefined) {
-        updateEmail(email);
+        setEmail(email);
         setStep(step);
       }
     } catch (error) {

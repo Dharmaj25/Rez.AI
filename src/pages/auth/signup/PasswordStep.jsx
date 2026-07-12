@@ -1,18 +1,18 @@
-import { ArrowLeft, FileUser, Info, Lock } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft, FileUser, Info } from "lucide-react";
+import { useContext, useState } from "react";
 import { setPassword } from "@/services/authService";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { SignupContext } from "./SignUpContext";
 
-const PasswordStep = ({ setStep = () => { }, nextStepMap = {}, email }) => {
-    const INITIAL_VALIDATION = {
-        isValid: true,
-        message: ""
-    };
+const PasswordStep = () => {
+    const INITIAL_VALIDATION = { isValid: true, message: "" };
 
     const [formData, setFormData] = useState({ password: "", confirmPassword: "" });
     const [validation, setValidation] = useState(INITIAL_VALIDATION);
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const { email, setStep, nextStepMap } = useContext(SignupContext);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

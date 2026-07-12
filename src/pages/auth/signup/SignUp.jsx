@@ -1,21 +1,9 @@
-import { useState } from "react";
-import EmailStep from "./EmailStep";
-import OtpStep from "./OtpStep";
-import DetailsStep from "./DetailsStep";
 import { Rocket, HandHeart } from "lucide-react";
 import { Link } from "react-router-dom";
-import PasswordStep from "./PasswordStep";
+import { SignUpProvider } from "./SignUpContext";
+import SignUpFlow from "./SignUpFlow";
 
 const SignUp = () => {
-  const [step, setStep] = useState("email");
-  const [email, setEmail] = useState(null);
-  const nextStepMap = {
-    "EMAIL": "email",
-    "OTP_VERIFICATION": "otp",
-    "PASSWORD_SETUP": "password",
-    "PERSONAL_DETAILS": "details"
-  }
-
   return (
     <div className="min-h-screen flex">
 
@@ -109,10 +97,9 @@ const SignUp = () => {
       </div>
       {/* RIGHT PANEL */}
       <div className="flex-1 flex items-center justify-center bg-white px-4 sm:px-6">
-        {step === "email" && <EmailStep setStep={setStep} nextStepMap={nextStepMap} updateEmail={setEmail} />}
-        {step === "otp" && <OtpStep setStep={setStep} nextStepMap={nextStepMap} email={email} />}
-        {step === "password" && <PasswordStep setStep={setStep} nextStepMap={nextStepMap} email={email} />}
-        {step === "details" && <DetailsStep setFormStep={setStep} nextStepMap={nextStepMap} email={email} />}
+        <SignUpProvider>
+          <SignUpFlow />
+        </SignUpProvider>
       </div>
     </div>
   );

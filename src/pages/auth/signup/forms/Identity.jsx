@@ -1,14 +1,16 @@
 import { ArrowRight, ArrowLeft, Info } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { savePersonalDetails } from "@/services/userService";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import useAuthStore from "@/stores/authStore";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { SignupContext } from "../SignUpContext";
 
-const Identity = ({ setStep = () => { }, setFormStep = () => { }, email }) => {
+const Identity = ({ setStep = () => { } }) => {
     const setAccessToken = useAuthStore((state) => state.setAccessToken);
+    const { setStep: setFormStep, email } = useContext(SignupContext);
 
     const [rawPhone, setRawPhone] = useState("");
     const [values, setValues] = useState({
