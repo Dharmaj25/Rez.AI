@@ -1,6 +1,5 @@
 import { Rocket, HandHeart } from "lucide-react";
 import { Link } from "react-router-dom";
-import { SignUpProvider } from "./SignUpContext";
 import SignUpFlow from "./SignUpFlow";
 
 const SignUp = () => {
@@ -97,9 +96,7 @@ const SignUp = () => {
       </div>
       {/* RIGHT PANEL */}
       <div className="flex-1 flex items-center justify-center bg-white px-4 sm:px-6">
-        <SignUpProvider>
-          <SignUpFlow />
-        </SignUpProvider>
+        <SignUpFlow />
       </div>
     </div>
   );

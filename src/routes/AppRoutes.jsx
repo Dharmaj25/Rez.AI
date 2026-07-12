@@ -13,14 +13,20 @@ import GuestRoute from "./GuestRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import ResetPassword from "@/pages/auth/ResetPassword";
 
+import { SignUpProvider } from "@/pages/auth/signup/SignUpContext";
+import AuthLayout from "@/layouts/AuthLayout";
+
 function AppRoutes() {
   return (
     <Routes>
       {/* Guest Routes */}
       <Route element={<GuestRoute><HomeLayout /></GuestRoute>} ><Route path="/" element={<Home />} /></Route>
-      <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
-      <Route path="/signup" element={<GuestRoute><SignUp /></GuestRoute>} />
-      <Route path="/reset-password" element={<GuestRoute><ResetPassword /></GuestRoute>} />
+
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
+        <Route path="/signup" element={<GuestRoute><SignUp /></GuestRoute>} />
+        <Route path="/reset-password" element={<GuestRoute><ResetPassword /></GuestRoute>} />
+      </Route>
 
       {/* Protected Routes */}
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>} >

@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { toast } from "sonner";
 
 export const SignupContext = createContext({ email: "", setEmail: () => { }, step: "", setStep: () => { }, nextStepMap: {} });
 
@@ -12,7 +13,6 @@ const NEXT_STEP_MAP = {
 export const SignUpProvider = ({ children }) => {
     const [email, setEmail] = useState("");
     const [step, setStep] = useState("email");
-
     return (
         <SignupContext.Provider value={{ email, setEmail, step, setStep, nextStepMap: NEXT_STEP_MAP }}>
             {children}

@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { SignupContext } from "./SignUpContext";
 import EmailStep from "./EmailStep";
 import OtpStep from "./OtpStep";

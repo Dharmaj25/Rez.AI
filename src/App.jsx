@@ -3,7 +3,7 @@ import { Toaster } from "sonner";
 import AppRoutes from "./routes/AppRoutes";
 import useAuthStore from "./stores/authStore";
 import { initializeAuth, refreshAccessToken } from "./services/authService";
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
   const setUser = useAuthStore(state => state.setUser);
@@ -39,10 +39,10 @@ function App() {
   }, []);
 
   return (
-    <>
-      <AppRoutes />
-      <Toaster closeButton={true} richColors />
-    </>
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+        <AppRoutes />
+        <Toaster closeButton={true} richColors />
+      </GoogleOAuthProvider>
   );
 }
 

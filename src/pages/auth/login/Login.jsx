@@ -7,9 +7,10 @@ import ForgotPassword from "./forms/ForgotPassword";
 const Login = () => {
   const [curentScreen, setCurrentScreen] = useState("Login");
   const ScreenMap = {
-    "Login": <BasicLogin setCurrentScreen = {setCurrentScreen} />,
+    "Login": <BasicLogin setCurrentScreen={setCurrentScreen} />,
     "ForgotPassword": <ForgotPassword setCurrentScreen={setCurrentScreen} />,
   }
+
 
   return (
     <div className="min-h-screen flex">

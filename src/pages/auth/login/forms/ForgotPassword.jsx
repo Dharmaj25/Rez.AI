@@ -5,22 +5,11 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 const ForgotPassword = ({ setCurrentScreen = () => { } }) => {
-    const [email, setEmail] = useState({
-        value: "",
-        isValid: true,
-        errorMessage: "",
-    });
-
+    const [email, setEmail] = useState({ value: "", isValid: true, errorMessage: "" });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [linkSent, setLinkSent] = useState(false);
 
-    const handleChange = (value) => {
-        setEmail({
-            value,
-            errorMessage: "",
-            isValid: true,
-        });
-    };
+    const handleChange = (value) => { setEmail({ value, errorMessage: "", isValid: true }) };
 
     const handleSubmit = async (event) => {
         event.preventDefault();

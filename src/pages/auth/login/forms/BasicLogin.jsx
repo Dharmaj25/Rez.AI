@@ -6,7 +6,9 @@ import GithubLogo from "../../../../assets/brands/github-logo.png";
 import LinkedinLogo from "../../../../assets/brands/linkedin-logo.png";
 import { ArrowRight, FileUser, Info } from "lucide-react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useGoogleLogin } from "@react-oauth/google";
+import { SignupContext } from "../../signup/SignUpContext";
 import { toast } from "sonner";
 
 const socialButtons = [
@@ -20,10 +22,36 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [searchParams] = useSearchParams();
-
+    const { setStep, setEmail, nextStepMap } = useContext(SignupContext);
 
     const setUser = useAuthStore((state) => state.setUser);
+    const setAccessToken = useAuthStore((state) => state.setAccessToken);
+
     const navigate = useNavigate();
+
+    const googleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            console.log(tokenResponse);
+        },
+        onError: (error) => {
+            console.log(error);
+        },
+    });
+
+
+    const handleOauthClick = (type) => {
+        switch (type) {
+            case "Google":
+                googleLogin();
+                break;
+
+            case "Github":
+                break;
+
+            case "LinkedIn":
+                break;
+        }
+    }
 
     const validateForm = () => {
         const validationErrors = {};
@@ -56,9 +84,22 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
         try {
             setIsSubmitting(true);
             const response = await login(values.email, values.password);
-            const userData = response?.data?.user || null;
-            setUser(userData);
-            navigate("/dashboard");
+            const responseData = response?.data?.user || {};
+
+            const nextStep = responseData.accountSetupStep;
+            if (nextStep === "COMPLETED") {
+                setUser(responseData.user || {});
+                setAccessToken(responseData.accessToken);
+                navigate("/dashboard");
+            } else {
+                setEmail(responseData.email || "");
+                setStep(nextStepMap[responseData.accountSetupStep]);
+                toast.info("Finish setting up your account", {
+                    description:
+                        "You're almost there. Complete the remaining steps to unlock all features.",
+                });
+                navigate("/signup")
+            }
         }
         catch (error) {
             const errorMessage = error?.response?.data?.message || "Some error occured. Please try again";
@@ -90,9 +131,7 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
 
     }, [])
 
-
     const errorMessageClass = "text-[11px] text-red-500 font-medium flex items-center gap-1 mt-1"
-
 
     return (
         <div className="flex-1 flex items-center justify-center bg-white px-4 sm:px-6 animate-drop-custom">
@@ -123,11 +162,11 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
                         <div className="flex-grow h-px bg-gray-200" />
                     </div>
 
-                    {/* social login */}
                     <div className="grid grid-cols-3 gap-3 mb-6">
                         {socialButtons.map(({ image, title }) => (
                             <button
                                 key={title}
+                                onClick={() => handleOauthClick(title)}
                                 className="flex flex-col items-center gap-1 py-3 border border-gray-200 rounded-md 
             hover:border-blue-500 hover:bg-white hover:-translate-y-0.5 hover:shadow-md 
             transition-all duration-200"
