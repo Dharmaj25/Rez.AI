@@ -1,5 +1,5 @@
 import { Spinner } from "@/components/ui/spinner";
-import { login } from "@/services/authService";
+import { authenticateWithGoogle, login } from "@/services/authService";
 import useAuthStore from "@/stores/authStore";
 import GoogleLogo from "../../../../assets/brands/google-logo.png";
 import GithubLogo from "../../../../assets/brands/github-logo.png";
@@ -30,14 +30,21 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
     const navigate = useNavigate();
 
     const googleLogin = useGoogleLogin({
+
         onSuccess: async (tokenResponse) => {
-            console.log(tokenResponse);
+            const access_token = tokenResponse.access_token
+            try {
+                const response = await authenticateWithGoogle(access_token);
+                handleAuthenticationSuccess(response.data.user);
+            }
+            catch (error) {
+                handleAuthenticationFailure(error, "Authentication Failed")
+            }
         },
         onError: (error) => {
             console.log(error);
         },
     });
-
 
     const handleOauthClick = (type) => {
         switch (type) {
@@ -55,10 +62,10 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
 
     const validateForm = () => {
         const validationErrors = {};
-        if (!values.email) validationErrors.email = "Email is reuquired";
+        if (!values.email) validationErrors.email = "Email is required";
         if (!values.password) validationErrors.password = "Password is required";
 
-        const hasErrors = Object.keys(validationErrors).length != 0;
+        const hasErrors = Object.keys(validationErrors).length > 0;
         if (hasErrors) {
             setErrors(validationErrors);
             return false;
@@ -84,28 +91,10 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
         try {
             setIsSubmitting(true);
             const response = await login(values.email, values.password);
-            const responseData = response?.data?.user || {};
-
-            const nextStep = responseData.accountSetupStep;
-            if (nextStep === "COMPLETED") {
-                setUser(responseData.user || {});
-                setAccessToken(responseData.accessToken);
-                navigate("/dashboard");
-            } else {
-                setEmail(responseData.email || "");
-                setStep(nextStepMap[responseData.accountSetupStep]);
-                toast.info("Finish setting up your account", {
-                    description:
-                        "You're almost there. Complete the remaining steps to unlock all features.",
-                });
-                navigate("/signup")
-            }
+            handleAuthenticationSuccess(response.data.user);
         }
         catch (error) {
-            const errorMessage = error?.response?.data?.message || "Some error occured. Please try again";
-            toast.error("Login Failed", {
-                description: errorMessage
-            })
+            handleAuthenticationFailure(error, "Login Failed")
         }
         finally {
             setIsSubmitting(false);
@@ -130,6 +119,34 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
         }
 
     }, [])
+
+
+    const handleAuthenticationSuccess = (responseData) => {
+        const isOnboardingCompleted = responseData.accountSetupStep === "COMPLETED";
+
+        if (isOnboardingCompleted) {
+            setUser(responseData || {});
+            setAccessToken(responseData.accessToken);
+            navigate("/dashboard");
+            return;
+        }
+
+        setEmail(responseData.email || "");
+        setStep(nextStepMap[responseData.accountSetupStep]);
+
+        toast.info("Finish setting up your account", {
+            description:
+                "You're almost there. Complete the remaining steps to unlock all features.",
+        });
+
+        navigate("/signup");
+    };
+
+    const handleAuthenticationFailure = (error, title) => {
+        toast.error(title, {
+            description: error?.response?.data?.message || "Something went wrong. Please try again.",
+        });
+    };
 
     const errorMessageClass = "text-[11px] text-red-500 font-medium flex items-center gap-1 mt-1"
 
@@ -191,7 +208,7 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
                     {/* form */}
                     <form
                         className="space-y-4"
-                        onSubmit={(event) => handleSubmit(event)}
+                        onSubmit={handleSubmit}
                     >
                         <div className="space-y-1.5">
                             <label className="text-xs font-medium text-gray-700">Email</label>
@@ -199,7 +216,7 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
                                 type="text"
                                 value={values.email}
                                 name="email"
-                                onChange={(event) => handleInputChange(event)}
+                                onChange={handleInputChange}
                                 placeholder="Enter your email address"
                                 className={getInputClass("email")}
                             />
@@ -215,7 +232,7 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
                                 type="password"
                                 value={values.password}
                                 name="password"
-                                onChange={(event) => handleInputChange(event)}
+                                onChange={handleInputChange}
                                 placeholder="Enter your password"
                                 className={getInputClass("password")}
                             />

@@ -26,17 +26,21 @@ export const setPassword = (email, password, confirmPassword) => {
 }
 
 export const login = (email, password) => {
-    return api.post(`${authEndpoint}/login`, {email, password});
+    return api.post(`${authEndpoint}/login`, { email, password });
 }
 
 export const sendPasswordResetLink = (email) => {
-    return api.post(`${authEndpoint}/forgot-password`, {email});
+    return api.post(`${authEndpoint}/forgot-password`, { email });
 }
 
 export const checkResetToken = (token) => {
     return api.get(`${authEndpoint}/reset-password/validate?token=${token}`)
 }
 
-export const resetPassword = (token, password , confirmPassword) => {
-    return api.patch(`${authEndpoint}/reset-password`, {token, password, confirmPassword});
+export const resetPassword = (token, password, confirmPassword) => {
+    return api.patch(`${authEndpoint}/reset-password`, { token, password, confirmPassword });
+}
+
+export const authenticateWithGoogle = (access_token) => {
+    return api.post(`${authEndpoint}/google`, { google_access_token: access_token });
 }
