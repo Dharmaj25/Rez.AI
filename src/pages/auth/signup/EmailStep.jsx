@@ -6,8 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
-import { getOtp } from "@/services/authService";
+import { authenticateWithGoogle, getOtp } from "@/services/authService";
 import { SignupContext } from "./SignUpContext";
+import { useGoogleLogin } from "@react-oauth/google";
+import useAuthStore from "@/stores/authStore";
 
 const socialButtons = [
   { image: GoogleLogo, title: "Google" },
@@ -40,7 +42,10 @@ const EmailStep = () => {
   const [validation, setValidation] = useState(INITIAL_VALIDATION);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const {email, setEmail, setStep, nextStepMap } = useContext(SignupContext);
+  const { email, setEmail, setStep, nextStepMap } = useContext(SignupContext);
+
+  const setUser = useAuthStore((state) => state.setUser);
+  const setAccessToken = useAuthStore((state) => state.setAccessToken);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -62,7 +67,7 @@ const EmailStep = () => {
 
       if (nextStep === "COMPLETED") {
         toast.info("Onboarding completed", {
-        description: "Your onboarding is complete, please login to access your account",
+          description: "Your onboarding is complete, please login to access your account",
         });
 
         navigate("/login");
@@ -86,6 +91,63 @@ const EmailStep = () => {
       setIsSubmitting(false);
     }
   };
+
+  const handleAuthenticationSuccess = (responseData) => {
+    const isOnboardingCompleted = responseData.accountSetupStep === "COMPLETED";
+
+    if (isOnboardingCompleted) {
+      setUser(responseData || {});
+      setAccessToken(responseData.accessToken);
+      navigate("/dashboard");
+      return;
+    }
+
+    setEmail(responseData.email || "");
+    setStep(nextStepMap[responseData.accountSetupStep]);
+
+    toast.info("Finish setting up your account", {
+      description:
+        "You're almost there. Complete the remaining steps to unlock all features.",
+    });
+
+    navigate("/signup");
+  };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      const access_token = tokenResponse.access_token
+      try {
+        const response = await authenticateWithGoogle(access_token);
+        handleAuthenticationSuccess(response.data.user);
+      }
+      catch (error) {
+        handleAuthenticationFailure(error, "Authentication Failed")
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleAuthenticationFailure = (error, title) => {
+    toast.error(title, {
+      description: error?.response?.data?.message || "Something went wrong. Please try again.",
+    });
+  };
+
+  const handleOauthClick = (type) => {
+    switch (type) {
+      case "Google":
+        googleLogin();
+        break;
+
+      case "Github":
+        break;
+
+      case "LinkedIn":
+        break;
+    }
+  }
 
   return (
     <div className="w-full max-w-md animate-drop-custom">
@@ -119,6 +181,7 @@ const EmailStep = () => {
           {socialButtons.map(({ image, title }) => (
             <button
               key={title}
+              onClick={() => handleOauthClick(title)}
               type="button"
               className="flex flex-col items-center gap-1 py-3 border border-gray-200 rounded-md hover:border-blue-500 hover:bg-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
             >

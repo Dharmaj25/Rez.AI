@@ -120,7 +120,6 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
 
     }, [])
 
-
     const handleAuthenticationSuccess = (responseData) => {
         const isOnboardingCompleted = responseData.accountSetupStep === "COMPLETED";
 
