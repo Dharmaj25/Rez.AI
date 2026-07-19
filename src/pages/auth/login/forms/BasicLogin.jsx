@@ -46,15 +46,18 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
         },
     });
 
+    const githubLogin = () => {
+        window.location.href = "http://localhost:5000/api/v1/auth/github";
+    };
+
     const handleOauthClick = (type) => {
         switch (type) {
             case "Google":
                 googleLogin();
                 break;
-
             case "Github":
+                githubLogin();
                 break;
-
             case "LinkedIn":
                 break;
         }
@@ -100,7 +103,6 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
             setIsSubmitting(false);
         }
     }
-
 
     const getInputClass = (fieldName) => {
         const baseClass = "w-full h-8 px-3 text-sm border rounded-md outline-none transition";

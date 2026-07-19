@@ -15,6 +15,7 @@ import ResetPassword from "@/pages/auth/ResetPassword";
 
 import { SignUpProvider } from "@/pages/auth/signup/SignUpContext";
 import AuthLayout from "@/layouts/AuthLayout";
+import GithubSuccess from "@/pages/auth/oauth/GithubSuccess";
 
 function AppRoutes() {
   return (
@@ -26,6 +27,7 @@ function AppRoutes() {
         <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
         <Route path="/signup" element={<GuestRoute><SignUp /></GuestRoute>} />
         <Route path="/reset-password" element={<GuestRoute><ResetPassword /></GuestRoute>} />
+        <Route path="/github/success" element={<GuestRoute><GithubSuccess /></GuestRoute>} />
       </Route>
 
       {/* Protected Routes */}
