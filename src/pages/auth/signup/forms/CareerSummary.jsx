@@ -1,26 +1,26 @@
 import { saveCareerSummary } from "@/services/userService";
 import { Rocket, ArrowLeft, Info, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "sonner";
 import useAuthStore from "@/stores/authStore";
 import { initializeAuth as fetchUser } from "@/services/authService";
+import { SignupContext } from "../SignUpContext";
 
 
 const CareerSummary = ({ setStep = () => { } }) => {
+
     const setUser = useAuthStore((state) => state.setUser);
-    const [values, setValues] = useState({
-        "target_role": "",
-        "pitch": ""
-    });
+    const { careerSummary, setCareerSummary } = useContext(SignupContext);
+
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setValues((prev) => ({ ...prev, [name]: value }));
+        setCareerSummary((prev) => ({ ...prev, [name]: value }));
         if (errors[name]) {
             setErrors((prev) => ({ ...prev, [name]: "" }));
         }
@@ -28,8 +28,8 @@ const CareerSummary = ({ setStep = () => { } }) => {
 
     const validateForm = () => {
         const validationErrors = {};
-        if (!values.target_role) validationErrors["target_role"] = "Target role is required";
-        if (!values.pitch) validationErrors["pitch"] = "Professional pitch is required";
+        if (!careerSummary.target_role) validationErrors["target_role"] = "Target role is required";
+        if (!careerSummary.pitch) validationErrors["pitch"] = "Professional pitch is required";
 
         setErrors(validationErrors);
         return Object.keys(validationErrors).length === 0;
@@ -43,7 +43,7 @@ const CareerSummary = ({ setStep = () => { } }) => {
         if (isFormValid) {
             setIsSubmitting(true);
             try {
-                await saveCareerSummary(values);
+                await saveCareerSummary(careerSummary);
                 const userData = await getUser();
                 setUser(userData);
                 navigate("/dashboard");
@@ -106,7 +106,7 @@ const CareerSummary = ({ setStep = () => { } }) => {
                     </label>
                     <input
                         name="target_role"
-                        value={values.target_role}
+                        value={careerSummary.target_role}
                         onChange={(event) => handleInputChange(event)}
                         type="text"
                         placeholder="e.g. Senior Frontend Engineer"
@@ -127,7 +127,7 @@ const CareerSummary = ({ setStep = () => { } }) => {
                     <textarea
                         rows={6}
                         name="pitch"
-                        value={values.pitch}
+                        value={careerSummary.pitch}
                         onChange={(event) => handleInputChange(event)}
                         placeholder="Describe your career goals and top skills in 1-2 sentences..."
                         className={`${getInputClass("pitch")} h-full p-2`}

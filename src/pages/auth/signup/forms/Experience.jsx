@@ -4,29 +4,20 @@ import { domainOptions } from "@/lib/helperData";
 import { saveProfessionalDetails } from "@/services/userService";
 import { ArrowRight, ArrowLeft, Info } from "lucide-react";
 import { Spinner } from "@/components/ui/spinner";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "sonner";
+import { SignupContext } from "../SignUpContext";
 
 const Experience = ({ setStep = () => { } }) => {
-    const [values, setValues] = useState({
-        career_level: "",
-        skills: [],
-        industry: "",
-        total_experience: "",
-        current_role: "",
-        highest_education: "",
-        graduation_year: "",
-        linkedin_profile: "",
-        portfolio: "",
-    });
 
+    const {professionalDetails, setProfessionalDetails} = useContext(SignupContext);
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
 
-        setValues((prev) => ({
+        setProfessionalDetails((prev) => ({
             ...prev,
             [name]: value,
         }));
@@ -40,7 +31,7 @@ const Experience = ({ setStep = () => { } }) => {
     };
 
     const handleFieldChange = (name, value) => {
-        setValues((prev) => ({
+        setProfessionalDetails((prev) => ({
             ...prev,
             [name]: value,
         }));
@@ -56,17 +47,17 @@ const Experience = ({ setStep = () => { } }) => {
     const isValid = () => {
         const validationErrors = {};
 
-        if (!values.career_level) validationErrors["career_level"] = "Career level is required";
-        if (!values.industry) validationErrors["industry"] = "Industry is required";
-        if (!values.skills || values.skills.length === 0) validationErrors["skills"] = "At least one skill is required";
-        if (!values.total_experience) validationErrors["total_experience"] = "Total experience is required";
-        if (!values.highest_education) validationErrors["highest_education"] = "Highest education is required";
-        if (!values.graduation_year) validationErrors["graduation_year"] = "Graduation year is required";
+        if (!professionalDetails.career_level) validationErrors["career_level"] = "Career level is required";
+        if (!professionalDetails.industry) validationErrors["industry"] = "Industry is required";
+        if (!professionalDetails.skills || professionalDetails.skills.length === 0) validationErrors["skills"] = "At least one skill is required";
+        if (!professionalDetails.total_experience) validationErrors["total_experience"] = "Total experience is required";
+        if (!professionalDetails.highest_education) validationErrors["highest_education"] = "Highest education is required";
+        if (!professionalDetails.graduation_year) validationErrors["graduation_year"] = "Graduation year is required";
 
-        if (values.total_experience && Number(values.total_experience) < 0) {
+        if (professionalDetails.total_experience && Number(professionalDetails.total_experience) < 0) {
             validationErrors["total_experience"] = "Total experience cannot be less than 0";
         }
-        if (values.graduation_year && Number(values.graduation_year) < 0) {
+        if (professionalDetails.graduation_year && Number(professionalDetails.graduation_year) < 0) {
             validationErrors["graduation_year"] = "Graduation year cannot be less than 0";
         }
 
@@ -82,7 +73,7 @@ const Experience = ({ setStep = () => { } }) => {
 
         try {
             setIsSubmitting(true);
-            const response = await saveProfessionalDetails(values);
+            const response = await saveProfessionalDetails(professionalDetails);
             setStep(3);
         } catch (error) {
             const errorMessage = error?.response?.data?.message || "Some error occured. Please try again"
@@ -113,7 +104,7 @@ const Experience = ({ setStep = () => { } }) => {
                     </label>
                     <select
                         className={getInputClass("career_level")}
-                        value={values.career_level}
+                        value={professionalDetails.career_level}
                         name="career_level"
                         onChange={handleInputChange}
                     >
@@ -139,7 +130,7 @@ const Experience = ({ setStep = () => { } }) => {
                     </label>
                     <ComboBox
                         options={domainOptions}
-                        value={values.industry}
+                        value={professionalDetails.industry}
                         onChange={(value) => handleFieldChange("industry", value)}
                         className={getInputClass("industry")}
                     />
@@ -161,7 +152,7 @@ const Experience = ({ setStep = () => { } }) => {
                         "Tailwind CSS", "Redux", "GraphQL", "Docker"
                     ]}
                     className={getInputClass("skills")}
-                    value={values.skills}
+                    value={professionalDetails.skills}
                     onChange={(value) => handleFieldChange("skills", value)}
                 />
                 {errors.skills && (
@@ -180,7 +171,7 @@ const Experience = ({ setStep = () => { } }) => {
                         type="number"
                         placeholder="2"
                         name="total_experience"
-                        value={values.total_experience}
+                        value={professionalDetails.total_experience}
                         onChange={handleInputChange}
                         min={0}
                         className={getInputClass("total_experience")}
@@ -199,7 +190,7 @@ const Experience = ({ setStep = () => { } }) => {
                     <input
                         type="text"
                         name="current_role"
-                        value={values.current_role}
+                        value={professionalDetails.current_role}
                         onChange={handleInputChange}
                         placeholder="e.g. Frontend Developer"
                         className={getInputClass("current_role")}
@@ -215,7 +206,7 @@ const Experience = ({ setStep = () => { } }) => {
                     <select
                         className={getInputClass("highest_education")}
                         name="highest_education"
-                        value={values.highest_education}
+                        value={professionalDetails.highest_education}
                         onChange={handleInputChange}
                     >
                         <option value="" disabled>
@@ -241,7 +232,7 @@ const Experience = ({ setStep = () => { } }) => {
                     <input
                         type="number"
                         name="graduation_year"
-                        value={values.graduation_year}
+                        value={professionalDetails.graduation_year}
                         onChange={handleInputChange}
                         placeholder="e.g. 2024"
                         className={getInputClass("graduation_year")}
@@ -262,7 +253,7 @@ const Experience = ({ setStep = () => { } }) => {
                     <input
                         type="text"
                         name="linkedin_profile"
-                        value={values.linkedin_profile}
+                        value={professionalDetails.linkedin_profile}
                         onChange={handleInputChange}
                         placeholder="https://linkedin.com/user"
                         className={getInputClass("linkedin_profile")}
@@ -277,7 +268,7 @@ const Experience = ({ setStep = () => { } }) => {
                         type="text"
                         placeholder="https://github.com/user"
                         name="portfolio"
-                        value={values.portfolio}
+                        value={professionalDetails.portfolio}
                         onChange={handleInputChange}
                         className={getInputClass("portfolio")}
                     />

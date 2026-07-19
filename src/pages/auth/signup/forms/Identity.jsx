@@ -10,32 +10,20 @@ import { SignupContext } from "../SignUpContext";
 
 const Identity = ({ setStep = () => { } }) => {
     const setAccessToken = useAuthStore((state) => state.setAccessToken);
-    const { setStep: setFormStep, email } = useContext(SignupContext);
-
-    const [rawPhone, setRawPhone] = useState("");
-    const [values, setValues] = useState({
-        email: email || "",
-        first_name: "",
-        last_name: "",
-        country: "",
-        state: "",
-        city: "",
-        number: "",
-        country_code: "+91"
-    });
+    const { setStep: setFormStep, email, personalDetails, setPersonalDetails } = useContext(SignupContext);
 
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         if (email) {
-            setValues((prev) => ({ ...prev, email }));
+            setPersonalDetails((prev) => ({ ...prev, email }));
         }
     }, [email]);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setValues((prev) => ({ ...prev, [name]: value }));
+        setPersonalDetails((prev) => ({ ...prev, [name]: value }));
 
         if (errors[name]) {
             setErrors((prev) => ({ ...prev, [name]: "" }));
@@ -43,8 +31,6 @@ const Identity = ({ setStep = () => { } }) => {
     };
 
     const handlePhoneChange = (phone, { country }) => {
-        setRawPhone(phone);
-
         const dialCodeWithPlus = `+${country?.dialCode}`;
 
         const cleanFullPhone = phone.replace(/[\s()-]/g, "");
@@ -52,10 +38,10 @@ const Identity = ({ setStep = () => { } }) => {
             ? cleanFullPhone.replace(dialCodeWithPlus, "")
             : cleanFullPhone;
 
-        setValues((prev) => ({
+        setPersonalDetails((prev) => ({
             ...prev,
             number: nationalNumber,
-            country_code: dialCodeWithPlus
+            country_code: dialCodeWithPlus,
         }));
 
         if (errors.number) {
@@ -66,13 +52,13 @@ const Identity = ({ setStep = () => { } }) => {
     const validateForm = () => {
         const newErrors = {};
 
-        if (!values.first_name.trim()) newErrors.first_name = "First name is required";
-        if (!values.last_name.trim()) newErrors.last_name = "Last name is required";
-        if (!values.country.trim()) newErrors.country = "Country is required";
-        if (!values.state.trim()) newErrors.state = "State is required";
-        if (!values.city.trim()) newErrors.city = "City is required";
+        if (!personalDetails.first_name.trim()) newErrors.first_name = "First name is required";
+        if (!personalDetails.last_name.trim()) newErrors.last_name = "Last name is required";
+        if (!personalDetails.country.trim()) newErrors.country = "Country is required";
+        if (!personalDetails.state.trim()) newErrors.state = "State is required";
+        if (!personalDetails.city.trim()) newErrors.city = "City is required";
 
-        if (!values.number || values.number.length < 4) {
+        if (!personalDetails.number || personalDetails.number.length < 4) {
             newErrors.number = "Please enter a valid phone number";
         }
 
@@ -87,7 +73,7 @@ const Identity = ({ setStep = () => { } }) => {
 
         try {
             setIsSubmitting(true);
-            const response = await savePersonalDetails(values);
+            const response = await savePersonalDetails(personalDetails);
             setAccessToken(response?.data?.accessToken || null);
             setStep(2);
         }
@@ -117,7 +103,7 @@ const Identity = ({ setStep = () => { } }) => {
                     <input
                         id="first_name"
                         name="first_name"
-                        value={values.first_name}
+                        value={personalDetails.first_name}
                         onChange={handleInputChange}
                         className={getInputClass("first_name")}
                         placeholder="e.g. John"
@@ -132,7 +118,7 @@ const Identity = ({ setStep = () => { } }) => {
                     <input
                         id="last_name"
                         name="last_name"
-                        value={values.last_name}
+                        value={personalDetails.last_name}
                         onChange={handleInputChange}
                         className={getInputClass("last_name")}
                         placeholder="e.g. Doe"
@@ -148,7 +134,7 @@ const Identity = ({ setStep = () => { } }) => {
                 <input
                     id="country"
                     name="country"
-                    value={values.country}
+                    value={personalDetails.country}
                     onChange={handleInputChange}
                     className={getInputClass("country")}
                     placeholder="e.g. India"
@@ -164,7 +150,7 @@ const Identity = ({ setStep = () => { } }) => {
                     <input
                         id="state"
                         name="state"
-                        value={values.state}
+                        value={personalDetails.state}
                         onChange={handleInputChange}
                         className={getInputClass("state")}
                         placeholder="e.g. Delhi"
@@ -179,7 +165,7 @@ const Identity = ({ setStep = () => { } }) => {
                     <input
                         id="city"
                         name="city"
-                        value={values.city}
+                        value={personalDetails.city}
                         onChange={handleInputChange}
                         className={getInputClass("city")}
                         placeholder="e.g. New Delhi"
@@ -194,7 +180,7 @@ const Identity = ({ setStep = () => { } }) => {
                 <label className="text-[10px] font-bold text-gray-500 uppercase">Phone Number</label>
                 <PhoneInput
                     defaultCountry="in"
-                    value={rawPhone}
+                    value={`${personalDetails.country_code}${personalDetails.number}`}
                     onChange={handlePhoneChange}
                     className="w-full"
                     inputClassName={`w-full px-3 py-2 border rounded-r-md text-sm h-8 focus:outline-none transition ${errors.number ? "border-red-500 ring-1 ring-red-500" : "border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
