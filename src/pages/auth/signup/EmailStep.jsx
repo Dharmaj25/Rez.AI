@@ -1,7 +1,6 @@
 import { FileUser, InfoIcon } from "lucide-react";
 import GoogleLogo from "../../../assets/brands/google-logo.png";
 import GithubLogo from "../../../assets/brands/github-logo.png";
-import LinkedinLogo from "../../../assets/brands/linkedin-logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { toast } from "sonner";
@@ -14,7 +13,6 @@ import useAuthStore from "@/stores/authStore";
 const socialButtons = [
   { image: GoogleLogo, title: "Google" },
   { image: GithubLogo, title: "Github" },
-  { image: LinkedinLogo, title: "LinkedIn" },
 ];
 
 const INITIAL_VALIDATION = {
@@ -135,16 +133,18 @@ const EmailStep = () => {
     });
   };
 
+  const githubLogin = () => {
+    window.location.href = `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/auth/github`;
+  };
+
+
   const handleOauthClick = (type) => {
     switch (type) {
       case "Google":
         googleLogin();
         break;
-
       case "Github":
-        break;
-
-      case "LinkedIn":
+        githubLogin();
         break;
     }
   }
@@ -177,7 +177,7 @@ const EmailStep = () => {
         </div>
 
         {/* Social Buttons */}
-        <div className="grid grid-cols-3 gap-3 mb-6">
+        <div className="grid grid-cols-2 gap-3 mb-6">
           {socialButtons.map(({ image, title }) => (
             <button
               key={title}

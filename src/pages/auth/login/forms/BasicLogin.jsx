@@ -3,7 +3,6 @@ import { authenticateWithGoogle, login } from "@/services/authService";
 import useAuthStore from "@/stores/authStore";
 import GoogleLogo from "../../../../assets/brands/google-logo.png";
 import GithubLogo from "../../../../assets/brands/github-logo.png";
-import LinkedinLogo from "../../../../assets/brands/linkedin-logo.png";
 import { ArrowRight, FileUser, Info } from "lucide-react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
@@ -14,7 +13,6 @@ import { toast } from "sonner";
 const socialButtons = [
     { image: GoogleLogo, title: "Google" },
     { image: GithubLogo, title: "Github" },
-    { image: LinkedinLogo, title: "LinkedIn" },
 ];
 
 const BasicLogin = ({ setCurrentScreen = () => { } }) => {
@@ -47,7 +45,7 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
     });
 
     const githubLogin = () => {
-        window.location.href = "http://localhost:5000/api/v1/auth/github";
+        window.location.href = `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/auth/github`;
     };
 
     const handleOauthClick = (type) => {
@@ -57,8 +55,6 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
                 break;
             case "Github":
                 githubLogin();
-                break;
-            case "LinkedIn":
                 break;
         }
     }
@@ -180,7 +176,7 @@ const BasicLogin = ({ setCurrentScreen = () => { } }) => {
                         <div className="flex-grow h-px bg-gray-200" />
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3 mb-6">
+                    <div className="grid grid-cols-2 gap-3 mb-6">
                         {socialButtons.map(({ image, title }) => (
                             <button
                                 key={title}
