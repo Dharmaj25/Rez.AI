@@ -44,3 +44,7 @@ export const resetPassword = (token, password, confirmPassword) => {
 export const authenticateWithGoogle = (access_token) => {
     return api.post(`${authEndpoint}/google`, { google_access_token: access_token });
 }
+
+export const logout = () => {
+    return api.post(`${authEndpoint}/logout`);
+}

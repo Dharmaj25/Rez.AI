@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "next-themes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -22,16 +22,35 @@ import {
     CreditCard,
     LogOut,
 } from "lucide-react";
+import { logout } from "@/services/authService";
+import { toast } from "sonner";
+import useAuthStore from "@/stores/authStore";
 
 const Navbar = () => {
     const { theme, setTheme } = useTheme();
     const [isDark, setIsDark] = useState(theme === "dark");
+
+    const logoutUser = useAuthStore((state) => state.logout);
+    const navigate = useNavigate();
 
     const toggleTheme = () => {
         const next = isDark ? "light" : "dark";
         setTheme(next);
         setIsDark(!isDark);
     };
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            logoutUser();
+            navigate("/login");
+        }
+        catch (err) {
+            toast.error("Error logging out", {
+                description: "Some error occured! Please try again"
+            })
+        }
+    }
 
     return (
         <header className="flex h-16 shrink-0 items-center justify-between border-b bg-white px-4 dark:bg-slate-950">
@@ -116,8 +135,8 @@ const Navbar = () => {
 
                         <DropdownMenuSeparator />
 
-                        <DropdownMenuItem className="cursor-pointer gap-2 text-red-600 focus:bg-red-50 focus:text-red-600 dark:focus:bg-red-500/10">
-                            <LogOut size={15} />
+                        <DropdownMenuItem className="cursor-pointer gap-2 text-red-600 focus:bg-red-50 focus:text-red-600 dark:focus:bg-red-500/10" onClick={() => handleLogout()}>
+                            <LogOut size={15}  />
                             Log out
                         </DropdownMenuItem>
                     </DropdownMenuContent>
