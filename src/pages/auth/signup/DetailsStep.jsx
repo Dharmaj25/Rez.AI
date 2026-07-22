@@ -60,10 +60,8 @@ const OnboardingFlow = () => {
             </div>
 
             <div className="relative mb-5">
-                {/* Background Gray Line (Centered perfectly) */}
                 <div className="absolute top-[18px] left-14 right-14 h-[2px] bg-gray-100 z-0" />
 
-                {/* Animated Blue Line (Stops exactly at circles) */}
                 <div className="absolute top-[18px] left-14 right-14 h-[2px] z-0">
                     <motion.div
                         className="h-full bg-blue-600"

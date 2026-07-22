@@ -13,9 +13,9 @@ import GuestRoute from "./GuestRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import ResetPassword from "@/pages/auth/ResetPassword";
 
-import { SignUpProvider } from "@/pages/auth/signup/SignUpContext";
 import AuthLayout from "@/layouts/AuthLayout";
 import GithubSuccess from "@/pages/auth/oauth/GithubSuccess";
+import CreateResume from "@/pages/private/resume/CreateResume";
 
 function AppRoutes() {
   return (
@@ -33,6 +33,7 @@ function AppRoutes() {
       {/* Protected Routes */}
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>} >
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/resume/new" element={<CreateResume />} />
       </Route>
 
       {/* 404 : Not Found */}
