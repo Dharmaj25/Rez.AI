@@ -30,6 +30,7 @@ const Navbar = () => {
     const { theme, setTheme } = useTheme();
     const [isDark, setIsDark] = useState(theme === "dark");
 
+    const user = useAuthStore((state) => state.user);
     const logoutUser = useAuthStore((state) => state.logout);
     const navigate = useNavigate();
 
@@ -51,6 +52,7 @@ const Navbar = () => {
             })
         }
     }
+
 
     return (
         <header className="flex h-16 shrink-0 items-center justify-between border-b bg-white px-4 dark:bg-slate-950">
@@ -93,12 +95,12 @@ const Navbar = () => {
                         <button className="flex items-center gap-2 rounded-lg py-1 pl-1 pr-2 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800">
                             <Avatar className="size-7">
                                 <AvatarFallback className="bg-gradient-to-br from-blue-500 to-blue-600 text-[11px] font-semibold text-white">
-                                    D
+                                    {`${user?.personalDetails?.first_name[0] || "U"}`}
                                 </AvatarFallback>
                             </Avatar>
 
                             <span className="hidden text-[13px] font-medium text-slate-700 sm:inline dark:text-slate-200">
-                                Dharmaj
+                                {user?.personalDetails?.first_name || "User"}
                             </span>
 
                             <ChevronDown size={14} className="text-slate-400" />
@@ -109,10 +111,10 @@ const Navbar = () => {
                         <DropdownMenuLabel className="font-normal">
                             <div className="flex flex-col gap-0.5">
                                 <span className="text-[13px] font-medium text-slate-900 dark:text-white">
-                                    Dharmaj
+                                    {`${user?.personalDetails?.first_name || "User"} ${user?.personalDetails?.last_name || ""}`}
                                 </span>
                                 <span className="truncate text-[11.5px] text-slate-500">
-                                    paniyadharmaj@gmail.com
+                                    {user?.email || ""}
                                 </span>
                             </div>
                         </DropdownMenuLabel>
@@ -136,7 +138,7 @@ const Navbar = () => {
                         <DropdownMenuSeparator />
 
                         <DropdownMenuItem className="cursor-pointer gap-2 text-red-600 focus:bg-red-50 focus:text-red-600 dark:focus:bg-red-500/10" onClick={() => handleLogout()}>
-                            <LogOut size={15}  />
+                            <LogOut size={15} />
                             Log out
                         </DropdownMenuItem>
                     </DropdownMenuContent>

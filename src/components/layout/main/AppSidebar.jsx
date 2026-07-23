@@ -1,25 +1,6 @@
-import {
-    Sidebar,
-    SidebarHeader,
-    SidebarContent,
-    SidebarFooter,
-    SidebarMenu,
-    SidebarMenuItem,
-    SidebarMenuButton,
-    SidebarGroup,
-    SidebarGroupLabel,
-    SidebarRail,
-} from "@/components/ui/sidebar";
-
-import {
-    LayoutDashboard,
-    FileText,
-    PlusSquare,
-    Palette,
-    Sparkles,
-    ChevronsUpDown,
-    Zap,
-} from "lucide-react";
+import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarGroup, SidebarGroupLabel, SidebarRail } from "@/components/ui/sidebar";
+import useAuthStore from "@/stores/authStore";
+import { LayoutDashboard, FileText, PlusSquare, Palette, Sparkles, ChevronsUpDown, Zap } from "lucide-react";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -43,6 +24,7 @@ const navGroups = [
 
 const AppSidebar = () => {
     const location = useLocation();
+    const user = useAuthStore((state) => state.user);
 
     const isItemActive = (url) =>
         location.pathname === url || location.pathname.startsWith(`${url}/`);
@@ -89,9 +71,8 @@ const AppSidebar = () => {
                                             <Link to={item.url}>
                                                 {/* active accent bar — expanded mode only */}
                                                 <span
-                                                    className={`absolute left-0 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-full bg-blue-600 transition-opacity duration-150 group-data-[collapsible=icon]:hidden ${
-                                                        active ? "opacity-100" : "opacity-0"
-                                                    }`}
+                                                    className={`absolute left-0 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-full bg-blue-600 transition-opacity duration-150 group-data-[collapsible=icon]:hidden ${active ? "opacity-100" : "opacity-0"
+                                                        }`}
                                                 />
                                                 <item.icon size={17} strokeWidth={2} />
                                                 <span>{item.title}</span>
@@ -128,12 +109,12 @@ const AppSidebar = () => {
                     className="flex items-center gap-2.5 rounded-lg p-1.5 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800/60"
                 >
                     <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-xs font-semibold text-white">
-                        D
+                        {user?.personalDetails?.first_name[0] || "U"}
                     </div>
 
                     <div className="flex min-w-0 flex-1 flex-col overflow-hidden group-data-[collapsible=icon]:hidden">
                         <span className="truncate text-[13px] font-medium text-slate-900 dark:text-white">
-                            Dharmaj
+                            {`${user?.personalDetails?.first_name || "User"} ${user?.personalDetails?.last_name || ""}`}
                         </span>
                         <span className="truncate text-[11px] text-slate-500">
                             Free Plan
