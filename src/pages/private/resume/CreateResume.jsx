@@ -3,23 +3,9 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {
-    User,
-    Mail,
-    Phone,
-    MapPin,
-    Linkedin,
-    Plus,
-    Trash2,
-    GripVertical,
-    SquarePen,
-    Check,
-    Briefcase,
-    GraduationCap,
-    Sparkles,
-    Award,
-} from "lucide-react";
+import {User,Mail,Phone,MapPin,Linkedin,Plus,Trash2,GripVertical,SquarePen,Check,Briefcase,GraduationCap,Sparkles,Award} from "lucide-react";
 import { motion } from "framer-motion";
+import useAuthStore from "@/stores/authStore";
 
 const tabs = ["Fill the Form", "Design", "Export"];
 

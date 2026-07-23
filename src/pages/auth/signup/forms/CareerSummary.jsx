@@ -82,8 +82,8 @@ const CareerSummary = ({ setStep = () => { } }) => {
     }
 
     const handleSkip = async () => {
-        const user = await fetchUser();
-        setUser(user);
+        const userData = await getUser();
+        setUser(userData);
         navigate("/dashboard");
     }
 
