@@ -3,9 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
 import MainLayout from "../layouts/MainLayout";
 
-import Home from "../pages/public/Home";
-import Dashboard from "../pages/private/Dashboard";
-import NotFound from "../pages/public/NotFound";
+import Home from "../pages/Home";
+import Dashboard from "../pages/dashboard/Dashboard";
+import NotFound from "../pages/NotFound";
 import SignUp from "@/pages/auth/signup/SignUp";
 import Login from "@/pages/auth/login/Login";
 
@@ -15,7 +15,7 @@ import ResetPassword from "@/pages/auth/ResetPassword";
 
 import AuthLayout from "@/layouts/AuthLayout";
 import GithubSuccess from "@/pages/auth/oauth/GithubSuccess";
-import CreateResume from "@/pages/private/resume/CreateResume";
+import CreateResume from "@/pages/resume/CreateResume";
 
 function AppRoutes() {
   return (

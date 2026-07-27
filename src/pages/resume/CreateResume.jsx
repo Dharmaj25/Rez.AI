@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {User,Mail,Phone,MapPin,Linkedin,Plus,Trash2,GripVertical,SquarePen,Check,Briefcase,GraduationCap,Sparkles,Award} from "lucide-react";
+import { User, Mail, Phone, MapPin, Linkedin, Plus, Trash2, GripVertical, SquarePen, Check, Briefcase, GraduationCap, Sparkles, Award } from "lucide-react";
 import { motion } from "framer-motion";
 import useAuthStore from "@/stores/authStore";
 
@@ -32,9 +32,8 @@ const StepCircle = ({ step, currentStep, onClick }) => {
                     backgroundColor: isCompleted ? "#2563eb" : isActive ? "#ffffff" : "#ffffff",
                     borderColor: isCompleted || isActive ? "#2563eb" : "#e2e8f0",
                 }}
-                className={`flex size-9 items-center justify-center rounded-full border-2 shadow-sm transition-shadow ${
-                    isActive ? "ring-4 ring-blue-100" : ""
-                } group-hover:border-blue-400`}
+                className={`flex size-9 items-center justify-center rounded-full border-2 shadow-sm transition-shadow ${isActive ? "ring-4 ring-blue-100" : ""
+                    } group-hover:border-blue-400`}
             >
                 {isCompleted ? (
                     <Check size={16} strokeWidth={3} className="text-white" />
@@ -48,9 +47,8 @@ const StepCircle = ({ step, currentStep, onClick }) => {
             </motion.div>
 
             <span
-                className={`text-[11px] font-medium tracking-wide transition-colors ${
-                    isActive ? "text-blue-600" : isCompleted ? "text-slate-600" : "text-slate-400 group-hover:text-slate-600"
-                }`}
+                className={`text-[11px] font-medium tracking-wide transition-colors ${isActive ? "text-blue-600" : isCompleted ? "text-slate-600" : "text-slate-400 group-hover:text-slate-600"
+                    }`}
             >
                 {step.label}
             </span>
@@ -62,6 +60,9 @@ const CreateResume = () => {
     const [activeTab, setActiveTab] = useState("Fill the Form");
     const [step, setStep] = useState(1);
     const progressWidth = `${((step - 1) / (steps.length - 1)) * 100}%`;
+
+    const user = useAuthStore((state) => state.user);
+    console.log(user);
 
     return (
         <div className="grid h-full grid-cols-2 overflow-hidden">
@@ -79,15 +80,13 @@ const CreateResume = () => {
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
-                                className={`relative py-4 text-[13.5px] font-medium transition-colors ${
-                                    activeTab === tab ? "text-blue-600" : "text-slate-500 hover:text-slate-800"
-                                }`}
+                                className={`relative py-4 text-[13.5px] font-medium transition-colors ${activeTab === tab ? "text-blue-600" : "text-slate-500 hover:text-slate-800"
+                                    }`}
                             >
                                 {tab}
                                 <span
-                                    className={`absolute inset-x-0 -bottom-px h-[2px] rounded-full bg-blue-600 transition-opacity ${
-                                        activeTab === tab ? "opacity-100" : "opacity-0"
-                                    }`}
+                                    className={`absolute inset-x-0 -bottom-px h-[2px] rounded-full bg-blue-600 transition-opacity ${activeTab === tab ? "opacity-100" : "opacity-0"
+                                        }`}
                                 />
                             </button>
                         ))}
@@ -124,13 +123,20 @@ const CreateResume = () => {
                                 <p className="mb-4 text-[12.5px] text-slate-500">
                                     This shows up at the top of your resume.
                                 </p>
-
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="col-span-2 space-y-1.5">
-                                        <Label className="text-[12.5px] text-slate-600">Full name</Label>
+                                    <div className="space-y-1.5">
+                                        <Label className="text-[12.5px] text-slate-600">First name</Label>
                                         <div className="relative">
                                             <User size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                                            <Input placeholder="Dharmaj Paniya" className="h-9 rounded-lg pl-9 text-[13px] focus-visible:ring-blue-500/30" />
+                                            <Input placeholder="John" defaultValue={user?.personalDetails?.first_name} className="h-9 rounded-lg pl-9 text-[13px] focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-1.5">
+                                        <Label className="text-[12.5px] text-slate-600">Last name</Label>
+                                        <div className="relative">
+                                            <User size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                                            <Input placeholder="Doe" defaultValue={user?.personalDetails?.last_name} className="h-9 rounded-lg pl-9 text-[13px] focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
                                         </div>
                                     </div>
 
@@ -138,7 +144,7 @@ const CreateResume = () => {
                                         <Label className="text-[12.5px] text-slate-600">Email</Label>
                                         <div className="relative">
                                             <Mail size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                                            <Input placeholder="you@email.com" className="h-9 rounded-lg pl-9 text-[13px] focus-visible:ring-blue-500/30" />
+                                            <Input placeholder="you@email.com" defaultValue={user?.email} className="h-9 rounded-lg pl-9 text-[13px] focus-visible:ring-blue-500/30" />
                                         </div>
                                     </div>
 
@@ -153,22 +159,64 @@ const CreateResume = () => {
                                     <div className="space-y-1.5">
                                         <Label className="text-[12.5px] text-slate-600">Location</Label>
                                         <div className="relative">
-                                            <MapPin size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                                            <Input placeholder="City, Country" className="h-9 rounded-lg pl-9 text-[13px] focus-visible:ring-blue-500/30" />
+                                            <MapPin
+                                                size={15}
+                                                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                                            />
+                                            <Input
+                                                placeholder="City, Country"
+                                                className="h-9 rounded-lg pl-9 text-[13px] focus-visible:ring-blue-500/30"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-1.5">
+                                        <Label className="text-[12.5px] text-slate-600">Location</Label>
+                                        <div className="relative">
+                                            <MapPin
+                                                size={15}
+                                                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                                            />
+                                            <Input
+                                                placeholder="City, Country"
+                                                className="h-9 rounded-lg pl-9 text-[13px] focus-visible:ring-blue-500/30"
+                                            />
                                         </div>
                                     </div>
 
                                     <div className="space-y-1.5">
                                         <Label className="text-[12.5px] text-slate-600">LinkedIn</Label>
                                         <div className="relative">
-                                            <Linkedin size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                                            <Input placeholder="linkedin.com/in/..." className="h-9 rounded-lg pl-9 text-[13px] focus-visible:ring-blue-500/30" />
+                                            <Linkedin
+                                                size={15}
+                                                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                                            />
+                                            <Input
+                                                placeholder="linkedin.com/in/..."
+                                                className="h-9 rounded-lg pl-9 text-[13px] focus-visible:ring-blue-500/30"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-1.5">
+                                        <Label className="text-[12.5px] text-slate-600">LinkedIn</Label>
+                                        <div className="relative">
+                                            <Linkedin
+                                                size={15}
+                                                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                                            />
+                                            <Input
+                                                placeholder="linkedin.com/in/..."
+                                                className="h-9 rounded-lg pl-9 text-[13px] focus-visible:ring-blue-500/30"
+                                            />
                                         </div>
                                     </div>
                                 </div>
+                            </section>
+                        )}
 
-                                <div className="h-px bg-slate-100 my-8" />
-
+                        {step === 2 && (
+                            <section>
                                 <h5 className="mb-1 text-[13.5px] font-semibold text-slate-900">Professional Summary</h5>
                                 <p className="mb-4 text-[12.5px] text-slate-500">
                                     2–3 sentences on who you are and what you do best.
@@ -177,11 +225,9 @@ const CreateResume = () => {
                                     placeholder="Frontend engineer with 4 years of experience building..."
                                     className="min-h-24 resize-none rounded-lg text-[13px] focus-visible:ring-blue-500/30"
                                 />
-                            </section>
-                        )}
 
-                        {step === 2 && (
-                            <section>
+                                <div className="h-px bg-slate-100 my-8" />
+
                                 <div className="mb-4">
                                     <h5 className="text-[13.5px] font-semibold text-slate-900">Work Experience</h5>
                                     <p className="text-[12.5px] text-slate-500">Add roles in reverse chronological order.</p>
