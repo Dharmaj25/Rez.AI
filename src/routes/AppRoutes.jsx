@@ -16,12 +16,14 @@ import ResetPassword from "@/pages/auth/ResetPassword";
 import AuthLayout from "@/layouts/AuthLayout";
 import GithubSuccess from "@/pages/auth/oauth/GithubSuccess";
 import CreateResume from "@/pages/resume/CreateResume";
+import ResumeIntro from "@/components/resume/intro/ResumeIntro";
 
 function AppRoutes() {
   return (
     <Routes>
       {/* Guest Routes */}
       <Route element={<GuestRoute><HomeLayout /></GuestRoute>} ><Route path="/" element={<Home />} /></Route>
+      <Route path="/test" element={<ResumeIntro />} />
 
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
