@@ -1,12 +1,15 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import ResumeIntro from "../intro/ResumeIntro";
+import { IntroProvider } from "../intro/IntroContext";
 
 const ResumeFlow = () => {
     const [stage, setStage] = useState("intro");
 
     if (stage === "intro") {
         return (
-            <ResumeIntro />
+            <IntroProvider>
+                <ResumeIntro />
+            </IntroProvider>
         )
     }
 
