@@ -12,6 +12,9 @@ const useCurrentUser = () => ({
 });
 
 const ResumeIntro = () => {
+
+    console.log("test");
+
     const { stage, setStage } = useContext(IntroContext);
     const user = useCurrentUser();
     const [currentIndex, setCurrentIndex] = useState(0);
