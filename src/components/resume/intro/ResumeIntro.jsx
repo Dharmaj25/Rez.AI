@@ -7,7 +7,7 @@ import Welcome from "./Welcome";
 import { IntroContext } from "./IntroContext";
 
 const useCurrentUser = () => ({
-    professionalDetails: { career_level: "employed", industry: "Software & Technology" },
+    professionalDetails: {  },
     careerTarget: {},
 });
 
