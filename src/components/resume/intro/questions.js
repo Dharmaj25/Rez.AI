@@ -78,19 +78,20 @@ export const questions = [
         validation: { required: true },
     },
     {
-        id: "current_resume",
-        title: "Do you already have a resume?",
-        description: "Select an option below to help us tailor your setup process.",
+        id: "resume_source",
+        title: "Where would you like to start?",
+        description: "Choose how you'd like to begin creating your resume.",
         type: QUESTION_TYPES.CHOICE_CARDS,
-        onboardingField: null,
+        profilePath: null,
         options: [
-            { value: "start_from_scratch", label: "Start from scratch", description: "Build a brand new resume step-by-step" },
-            { value: "upload_my_resume", label: "Upload my resume", description: "Import and extract data from an existing PDF or DOCX file" },
-            { value: "use_existing", label: "Use from my library", description: "Select and modify a resume you previously created here" },
+            { value: "new_resume", label: "Start a new resume", description: "We'll create a personalized first draft using your profile and AI." },
+            { value: "upload_resume", label: "Upload an existing resume", description: "We'll extract, organize, and improve your existing resume." },
+            { value: "existing_resume", label: "Continue from my Rez.AI library", description: "Start from one of your previously created resumes." }
         ],
-        validation: { required: true },
-    },
-];
+        validation: {
+            required: true
+        }
+    }];
 
 export const getOnboardingValue = (user, path) => {
     if (!path || !user) return undefined;
