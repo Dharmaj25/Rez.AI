@@ -16,14 +16,13 @@ import ResetPassword from "@/pages/auth/ResetPassword";
 import AuthLayout from "@/layouts/AuthLayout";
 import GithubSuccess from "@/pages/auth/oauth/GithubSuccess";
 import CreateResume from "@/pages/resume/CreateResume";
-import ResumeIntro from "@/components/resume/intro/ResumeIntro";
+import TemplateListing from "@/pages/template/Template";
 
 function AppRoutes() {
   return (
     <Routes>
       {/* Guest Routes */}
       <Route element={<GuestRoute><HomeLayout /></GuestRoute>} ><Route path="/" element={<Home />} /></Route>
-      <Route path="/test" element={<ResumeIntro />} />
 
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
@@ -36,6 +35,7 @@ function AppRoutes() {
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>} >
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/resume/new" element={<CreateResume />} />
+        <Route path="/templates" element={<TemplateListing />} />
       </Route>
 
       {/* 404 : Not Found */}
