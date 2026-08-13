@@ -1,14 +1,14 @@
+import { sampleData } from "../../utils.js";
 import { Certifications } from "./Certifications.jsx";
 import { Education } from "./Education.jsx";
 import { Experience } from "./Experience.jsx";
 import { Header } from "./Header.jsx";
 import { ProfessionalSummary } from "./ProfessionalSummary.jsx";
 import { Skills } from "./Skills.jsx";
-import { sampleData, sampleSections } from "./util";
 
 const Simple = ({ data, sections }) => {
-    const templateData = data || sampleData;
-    const supportedSections = sections || sampleSections
+    const templateData = data || sampleData.professional.classic.data;
+    const supportedSections = sections || sampleData.professional.classic.sections;
 
     return (
         <>

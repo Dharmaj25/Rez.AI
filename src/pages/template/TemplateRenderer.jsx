@@ -1,4 +1,4 @@
-import Simple from "./professional/simple/Simple.jsx";
+import Simple from "./styles/professional/simple/Simple";
 
 const TemplateRenderer = ({ slug, data = null, sections = [] }) => {
     const templates = {
@@ -8,7 +8,7 @@ const TemplateRenderer = ({ slug, data = null, sections = [] }) => {
     const TemplateDesign = templates[slug];
 
     if (!TemplateDesign) {
-        return <div>No template found</div>; // Or return null;
+        return <div>No template found</div>; 
     }
 
     return (
