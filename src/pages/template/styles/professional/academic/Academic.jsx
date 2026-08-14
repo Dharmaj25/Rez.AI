@@ -4,11 +4,11 @@ import Projects from "./Projects";
 import Summary from "./Summary";
 import Education from "./Education";
 import Skills from "./Skills";
-import { sampleData } from "../../utils";
+import { demoData, visibleSections } from "./sampleData";
 
 const Academic = ({ data = null, sections = null }) => {
-    const templateData = data || sampleData.professional.academic.data;
-    const supportedSections = sections || sampleData.professional.academic.sections;
+    const templateData = data || demoData
+    const supportedSections = sections || visibleSections;
 
     return (
         <div className="font-serif">

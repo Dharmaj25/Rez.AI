@@ -1,4 +1,6 @@
-const Eductaion = () => {
+const Eductaion = ({ data }) => {
+    const { education = [] } = data.professional;
+
     return (
         <section>
             <h2 className="text-[20px] leading-none font-bold uppercase">
@@ -7,18 +9,22 @@ const Eductaion = () => {
 
             <div className="h-px bg-black w-full mt-1 mb-2"></div>
 
-            <div className="mb-3">
-                <p className="font-bold text-[18px]">Master of Educational Science</p>
-                <p className="text-[15px] leading-[1.45] font-normal text-gray-900">Minor in Bilingual Education · Long Island University · Brooklyn, NY · 2016</p>
-            </div>
-            <div className="mb-3">
-                <p className="font-bold text-[18px]">Bachelor of Arts in English and History</p>
-                <p className="text-[15px] leading-[1.45] font-normal text-gray-900">Fordham University · Bronx, Ny · 2013</p>
-            </div>
+            {education.map((item, index) => (
+                <div className="mb-3" key={index}>
+                    <p className="font-bold text-[18px]">
+                        {item.title}
+                    </p>
+
+                    <p className="text-[15px] leading-[1.45] font-normal text-gray-900">
+                        {item.organization.name} · {item.organization.city},{" "}
+                        {item.organization.state} · {item.end_date}
+                    </p>
+                </div>
+            ))}
 
             <div className="h-px bg-gray-200 w-full my-5"></div>
         </section>
-    )
-}
+    );
+};
 
 export default Eductaion;
