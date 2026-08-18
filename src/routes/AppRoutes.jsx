@@ -17,12 +17,15 @@ import AuthLayout from "@/layouts/AuthLayout";
 import GithubSuccess from "@/pages/auth/oauth/GithubSuccess";
 import CreateResume from "@/pages/resume/CreateResume";
 import TemplateListing from "@/pages/template/Template";
+import Slate from "@/pages/template/styles/modern/slate/Slate";
 
 function AppRoutes() {
   return (
     <Routes>
       {/* Guest Routes */}
       <Route element={<GuestRoute><HomeLayout /></GuestRoute>} ><Route path="/" element={<Home />} /></Route>
+      <Route path="/test" element={<Slate />} />
+
 
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />

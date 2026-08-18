@@ -6,11 +6,15 @@ export const demoData = {
             code: "261",
             number: "123-456-789"
         },
+        city: "Boston",
+        state: "NY",
+        country: "USA",
         email: "connorhammilton@dev.mail",
     },
     professional: {
         github: "github.com/connorhamilton",
-        linkedin: "linkedin.com/connorhamilton",
+        linkedin_profile: "linkedin.com/connorhamilton",
+        portfolio: "www.reallygrreatsite.com",
         current_role: "Full Stack Developer",
         summary: "Passionate Full Stack Developer with 3+ years of experience building scalable and user-friendly web applications. Skilled in JavaScript, React, Node.js, and databases. Strong problem-solving abilities and a keen eye for clean, efficient code. Always eager to learn new technologies and contribute to impactful products.",
         education: [
@@ -151,4 +155,4 @@ export const demoData = {
     }
 };
 
-export const visibleSections = ["header", "experience", "projects", "contact", "education", "skills", "certification"];
+export const visibleSections = ["header", "experience", "projects", "contact", "education", "skills", "certification", "profile"]; 
