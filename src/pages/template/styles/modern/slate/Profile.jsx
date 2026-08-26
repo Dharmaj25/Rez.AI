@@ -4,10 +4,14 @@ const Profile = ({ data }) => {
     const { profile_picture } = data.personal;
 
     return (
-        <section className="flex justify-center">
-            <img className="rounded-full" src={profile_picture || placeholderImage} alt="profile_picture" height="20%" width="auto" />
+        <section className="flex justify-center p-4">
+            <img 
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover aspect-square" 
+                src={profile_picture || placeholderImage} 
+                alt="profile_picture" 
+            />
         </section>
-    )
-}
+    );
+};
 
 export default Profile;
