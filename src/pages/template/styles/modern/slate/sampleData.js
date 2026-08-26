@@ -26,7 +26,18 @@ export const demoData = {
                     state: "MA",
                     country: "USA"
                 },
-                start_data: "Sep 2020",
+                start_date: "Sep 2020",
+                end_date: "May 2024",
+            },
+                 {
+                title: "B.S. in Computer Science",
+                organization: {
+                    name: "State University",
+                    city: "Boston",
+                    state: "MA",
+                    country: "USA"
+                },
+                start_date: "Sep 2020",
                 end_date: "May 2024",
             },
         ],
@@ -53,7 +64,7 @@ export const demoData = {
             },
             {
                 title: "Git, Github",
-                type: "Technical Skill"
+                type: "Technical Skills"
             },
             {
                 title: "RESTful APIs, JWT, GraphQL",
