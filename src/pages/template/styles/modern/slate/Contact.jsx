@@ -5,7 +5,7 @@ const Contact = ({ data }) => {
     const { city, state, country, phone, email } = data.personal;
     const { github, portfolio, linkedin_profile } = data.professional;
 
-    const textClass = "text-white text-[11px] font-normal";
+    const textClass = "text-white text-[13px] font-normal";
     const iconItemClass = "flex items-center gap-1"
 
     return (

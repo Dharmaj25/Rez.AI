@@ -148,19 +148,24 @@ export const demoData = {
                 ]
             }
         ],
-        projects: [
+projects: [
             {
                 title: "TaskFlow - Project Management Tool",
-                desctiption: ["A full stack project management tool with task tracking, team collaboration, and real-time updates."],
-                tech_stack: ["React.js", "Node.js", "Express.js", "MongoDB", "Socket.io", "Tailwind CSS"],
+                description: ["A full stack project management tool with task tracking, team collaboration, and real-time updates."],
+                tools: ["React.js", "Node.js", "Express.js", "MongoDB", "Socket.io", "Tailwind CSS"],
                 key_features: ["User authentication", "real-time notification", "task management", "file uploads"]
             },
             {
                 title: "DevBlog - Developer Blogging Platform",
                 description: ["A blogging platform for developers to create, read, and share technical articles"],
-                tech_stack: ["Next.js", "Node.js", "MongoDB", "Tailwind CSS", "JWT"],
+                tools: ["Next.js", "Node.js", "MongoDB", "Tailwind CSS", "JWT"],
                 key_features: ["Markdown editor", "Category filters", "Search", "User profiles", "Comments"]
-
+            },
+            {
+                title: "ShopPulse - E-Commerce Platform",
+                description: ["A modern e-commerce platform featuring dynamic product filtering, seamless checkout, and admin analytics."],
+                tools: ["React.js", "Redux Toolkit", "Node.js", "Express.js", "Stripe API", "Tailwind CSS"],
+                key_features: ["Payment gateway integration", "Shopping cart state management", "Order tracking", "Admin dashboard"]
             }
         ]
     }

@@ -4,6 +4,7 @@ import Education from "./Education";
 import Experience from "./Experience";
 import Header from "./Header";
 import Profile from "./Profile";
+import Projects from "./Projects";
 import { demoData, visibleSections } from "./sampleData";
 import Skills from "./Skills";
 
@@ -22,8 +23,9 @@ const Slate = ({ data, sections }) => {
             </div>
 
             <div className="col-span-8 bg-white p-8 flex flex-col gap-6">
-                <Header data={templateData} />
-                <Experience data={templateData} />
+                {supportedSections.includes("header") && <Header data={templateData} />}
+                {supportedSections.includes("experience") && <Experience data={templateData} />}
+                {supportedSections.includes("projects") && <Projects data={templateData} />}
             </div>
         </div>
     );

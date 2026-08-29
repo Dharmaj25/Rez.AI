@@ -1,6 +1,6 @@
 const Education = ({ data }) => {
     const education = data.professional.education || [];
-    const baseTextClass = "text-white text-[11px]";
+    const baseTextClass = "text-white text-[13px]";
 
     return (
         <section classname="flex flex-col gap-2">

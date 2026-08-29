@@ -3,7 +3,7 @@ const Skills = ({ data }) => {
     const skills = data.professional.skills || [];
     const SkillGroups = Object.groupBy(skills, (skill) => skill.type);
 
-    const baseTextClass = "text-white text-[10px]";
+    const baseTextClass = "text-white text-[13px]";
 
     return (
         <section>

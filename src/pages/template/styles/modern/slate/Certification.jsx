@@ -1,6 +1,6 @@
 const Certification = ({ data }) => {
     const certificates = data.professional.certification || [];
-    const baseTextClass = "text-white text-[10px]";
+    const baseTextClass = "text-white text-[13px]";
 
     return (
         <section>
