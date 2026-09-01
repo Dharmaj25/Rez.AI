@@ -1,4 +1,4 @@
-const demoData = {
+export const demoData = {
     personal: {
         first_name: "Isabella",
         last_name: "Clark",
@@ -176,3 +176,6 @@ const demoData = {
         ]
     }
 }
+
+
+export const visibleSections = ["header", "experience", "education", "summary", "skills", "certification", "languages"]; 
