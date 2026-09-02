@@ -1,5 +1,6 @@
 import Education from "./Education";
 import Header from "./Header";
+import Skills from "./Skills";
 
 import { demoData, visibleSections } from "./sampleData";
 
@@ -11,9 +12,10 @@ const Corporate = ({ data, sections }) => {
     return (
         <div className="font-serif">
             {supportedSections.includes("header") && <Header data={templateData} />}
-            <div className="grid grid-cols-10">
-                <div className="col-span-3">
-                    <Education />
+            <div className="grid grid-cols-10 p-6">
+                <div className="col-span-3 flex flex-col gap-7">
+                    <Education data={templateData} />
+                    <Skills data={templateData} />
                 </div>
                 <div className="col-span-7">
 
