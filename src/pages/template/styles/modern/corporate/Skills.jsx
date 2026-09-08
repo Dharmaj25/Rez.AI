@@ -17,7 +17,7 @@ const Skills = ({ data }) => {
                     <h4 className="font-semibold uppercase tracking-widest">{grp}</h4>
                     <ul className="pl-6 list-disc">
                         {skillGroups[grp].map((skill, inner_index) => (
-                            <li key={inner_index}>{skill.title}</li>
+                            <li key={inner_index} className="text-[14px]">{skill.title}</li>
                         ))}
                     </ul>
                 </div>

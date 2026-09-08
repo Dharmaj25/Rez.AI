@@ -13,7 +13,7 @@ const Education = ({ data }) => {
                 {education.map((ed, index) => {
                     const org = ed?.organization;
                     const location = [org?.city, org?.state, org?.country].filter(Boolean).join(', ');
-                    
+
                     return (
                         <div key={ed.id || index}>
                             {ed?.title && (
