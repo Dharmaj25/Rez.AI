@@ -147,7 +147,7 @@ export const demoData = {
                     country: "Canada"
                 },
                 start_date: "Jun 2020",
-                end_date: "Dec 2021›",
+                end_date: "Dec 2021",
                 responsibilities: [
                     "Assisted in the development and execution of email marketing campaigns with a 20% average open rate.",
                     "Supported content creation for blogs, newsletters, and social media platforms.",
