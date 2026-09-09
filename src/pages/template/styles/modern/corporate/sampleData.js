@@ -173,9 +173,14 @@ export const demoData = {
                 },
                 date: "Oct 2022"
             }
+        ],
+        language: [
+            "English - Native",
+            "French - Intermediate",
+            "Spanish - Basic"
         ]
     }
 }
 
 
-export const visibleSections = ["header", "experience", "education", "summary", "skills", "certification", "languages"]; 
+export const visibleSections = ["header", "experience", "education", "summary", "skills", "certification", "language"]; 
