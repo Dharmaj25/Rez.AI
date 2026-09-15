@@ -18,13 +18,14 @@ import GithubSuccess from "@/pages/auth/oauth/GithubSuccess";
 import CreateResume from "@/pages/resume/CreateResume";
 import TemplateListing from "@/pages/template/Template";
 import Corporate from "@/pages/template/styles/modern/corporate/Corporate";
+import CleanBlue from "@/pages/template/styles/modern/clean-blue";
 
 function AppRoutes() {
   return (
     <Routes>
       {/* Guest Routes */}
       <Route element={<GuestRoute><HomeLayout /></GuestRoute>} ><Route path="/" element={<Home />} /></Route>
-      <Route path="/test" element={<Corporate />} />
+      <Route path="/test" element={<CleanBlue />} />
 
 
       <Route element={<AuthLayout />}>
