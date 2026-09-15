@@ -24,8 +24,27 @@ export const demoData = {
                     country: "USA"
                 },
                 start_date: "",
-                end_date: "May 2026"
+                end_date: "May 2026",
+                achievements: [
+                    "Honors: Dean's List Academic Achievement Award",
+                    "Capstone Project: Cloud-Hosted Inventory Management Web Application"
+                ]
             },
+             {
+                title: "Bachelor of Science in Computer Science",
+                organization: {
+                    name: "Southeast University",
+                    city: "New York City",
+                    state: "New York",
+                    country: "USA"
+                },
+                start_date: "",
+                end_date: "May 2026",
+                achievements: [
+                    "Honors: Dean's List Academic Achievement Award",
+                    "Capstone Project: Cloud-Hosted Inventory Management Web Application"
+                ]
+            }
         ],
         skills: [
             "Object-Oriented Programming",

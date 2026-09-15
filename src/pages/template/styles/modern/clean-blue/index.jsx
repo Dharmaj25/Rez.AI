@@ -1,3 +1,4 @@
+import Education from "./Education";
 import Header from "./Header";
 import { demoData, visibleSections } from "./sampleData"
 import Summary from "./Summary";
@@ -11,8 +12,9 @@ const CleanBlue = ({ data, sections }) => {
             <div>
                 {supportedSections.includes("header") && <Header data={templateData} />}
             </div>
-            <div>
+            <div className="flex flex-col gap-6">
                 {supportedSections.includes("summary") && <Summary data={templateData} />}
+                {supportedSections.includes("education") && <Education data={templateData} />}
             </div>
         </div>
     )
