@@ -1,4 +1,6 @@
+import Certification from "./Certifications";
 import Education from "./Education";
+import Experience from "./Experience";
 import Header from "./Header";
 import { demoData, visibleSections } from "./sampleData"
 import Skills from "./Skills";
@@ -17,6 +19,8 @@ const CleanBlue = ({ data, sections }) => {
                 {supportedSections.includes("summary") && <Summary data={templateData} />}
                 {supportedSections.includes("education") && <Education data={templateData} />}
                 {supportedSections.includes("skills") && <Skills data={templateData} />}
+                {supportedSections.includes("experience") && <Experience data={templateData} />}
+                {supportedSections.includes("certification") && <Certification data={templateData} />}
             </div>
         </div>
     )
